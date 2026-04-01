@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAIGO SAKANE — Media Artist</title>
+<meta name="description" content="坂根大悟 / Daigo Sakane — Media Artist. LiDAR, Game, Ruins, Historiography.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS RESET & VARIABLES
+   ============================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --red: #062C54;
+  --red-bright: #0A4080;
+  --accent-light: #4A9EFF;
+  --black: #0A0A0A;
+  --white: #F0ECE3;
+  --cream: #E8E0D0;
+  --grey: #888;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Space Mono', monospace;
+  --font-jp: 'Noto Sans JP', sans-serif;
+  --glitch-offset: 0px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--red) var(--black);
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+::selection {
+  background: var(--red);
+  color: var(--white);
+}
+
+a {
+  color: var(--accent-light);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover { color: var(--white); }
+
+/* ============================================
+   SCAN LINES OVERLAY
+   ============================================ */
+.scanlines {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+  opacity: 0.5;
+}
+
+/* ============================================
+   GLITCH EFFECT CLASSES
+   ============================================ */
+.glitch-text {
+  position: relative;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0;
+  transition: none;
+}
+.glitch-text::before {
+  color: cyan;
+  clip-path: inset(0 0 60% 0);
+}
+.glitch-text::after {
+  color: #4A9EFF;
+  clip-path: inset(40% 0 0 0);
+}
+.glitch-text.glitching::before {
+  opacity: 0.8;
+  animation: glitch-top 0.3s steps(2) infinite;
+}
+.glitch-text.glitching::after {
+  opacity: 0.8;
+  animation: glitch-bottom 0.3s steps(2) infinite;
+}
+
+@keyframes glitch-top {
+  0%   { transform: translate(-3px, -2px); }
+  25%  { transform: translate(3px, 1px); }
+  50%  { transform: translate(-1px, 2px); }
+  75%  { transform: translate(2px, -1px); }
+  100% { transform: translate(-2px, 1px); }
+}
+@keyframes glitch-bottom {
+  0%   { transform: translate(3px, 2px); }
+  25%  { transform: translate(-3px, -1px); }
+  50%  { transform: translate(1px, -2px); }
+  75%  { transform: translate(-2px, 1px); }
+  100% { transform: translate(2px, -1px); }
+}
+
+/* Block glitch */
+.glitch-block {
+  position: relative;
+}
+.glitch-block.glitching {
+  animation: block-glitch 0.15s steps(1) infinite;
+}
+@keyframes block-glitch {
+  0%   { clip-path: inset(0 0 0 0); }
+  10%  { clip-path: inset(20% 0 40% 0); transform: translateX(-5px); }
+  20%  { clip-path: inset(60% 0 10% 0); transform: translateX(5px); }
+  30%  { clip-path: inset(0 0 0 0); transform: translateX(0); }
+  40%  { clip-path: inset(10% 0 70% 0); transform: translateX(3px); }
+  50%  { clip-path: inset(0 0 0 0); transform: translateX(0); }
+  100% { clip-path: inset(0 0 0 0); transform: translateX(0); }
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  mix-blend-mode: difference;
+}
+nav .logo {
+  font-family: var(--font-jp);
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: 4px;
+  color: rgba(240,236,227,0.8);
+}
+nav .nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+nav .nav-links a {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: var(--white);
+  text-transform: uppercase;
+  position: relative;
+}
+nav .nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent-light);
+  transition: width 0.3s;
+}
+nav .nav-links a:hover::after { width: 100%; }
+nav .nav-links a:hover { color: var(--white); }
+
+/* ============================================
+   HERO SECTION — CASSANDRE TRAIN × RODCHENKO
+   ============================================ */
+#hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--red);
+}
+
+.hero-diagonal { display: none; }
+.hero-lines { display: none; }
+.hero-circle-sm { display: none; }
+
+.hero-circle {
+  position: absolute;
+  width: 500px; height: 500px;
+  border: 2px solid rgba(240,236,227,0.07);
+  border-radius: 50%;
+  top: 8%; right: -5%;
+  z-index: 1;
+}
+
+/* Train wrapper — holds SVG + text, tilted */
+.hero-train-wrapper {
+  position: relative;
+  z-index: 3;
+  width: 85vw;
+  max-width: 1100px;
+  transform: rotate(-6deg);
+}
+
+.hero-train-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Text sits on respective train cars */
+.hero-content {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* DAIGO — centered on car 1 */
+.hero-name-line1 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4.5vw, 56px);
+  line-height: 1;
+  letter-spacing: 0.3em;
+  color: rgba(220,216,207,0.85);
+  text-transform: uppercase;
+  display: block;
+  transform: scaleY(1.15);
+  position: absolute;
+  left: 15%;
+  width: 35%;
+  text-align: center;
+  top: 60%;
+  translate: 0 -50%;
+}
+
+/* SAKANE — centered on car 2 */
+.hero-name-line2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4.5vw, 56px);
+  line-height: 1;
+  letter-spacing: 0.45em;
+  color: rgba(220,216,207,0.85);
+  text-transform: uppercase;
+  display: block;
+  transform: scaleY(1.15);
+  position: absolute;
+  left: 51%;
+  width: 45%;
+  text-align: center;
+  top: 60%;
+  translate: 0 -50%;
+}
+
+.hero-content::after { display: none; }
+
+/* Tagline — like destination cities below the train */
+.hero-tagline {
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-body);
+  font-size: clamp(11px, 1.5vw, 17px);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(240,236,227,0.55);
+  margin-top: 30px;
+  transform: rotate(-6deg);
+}
+
+.hero-year {
+  position: absolute;
+  bottom: 40px; right: 40px;
+  font-family: var(--font-display);
+  font-size: 120px;
+  color: rgba(240,236,227,0.04);
+  z-index: 2;
+  letter-spacing: 10px;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cream);
+  animation: pulse-down 2s ease infinite;
+}
+@keyframes pulse-down {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 1; transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============================================
+   SECTION COMMON
+   ============================================ */
+section {
+  padding: 120px 40px;
+  position: relative;
+}
+
+.section-header {
+  margin-bottom: 80px;
+  position: relative;
+}
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8vw, 100px);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--white);
+  position: relative;
+  display: inline-block;
+}
+.section-header h2::before {
+  content: '';
+  position: absolute;
+  left: -20px; top: 50%;
+  width: 8px; height: 60%;
+  background: var(--accent-light);
+  transform: translateY(-50%);
+}
+.section-number {
+  font-family: var(--font-display);
+  font-size: 200px;
+  color: rgba(74,158,255,0.06);
+  position: absolute;
+  top: -60px; right: 0;
+  letter-spacing: 10px;
+  pointer-events: none;
+}
+
+/* reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   WORKS SECTION
+   ============================================ */
+#works {
+  background: var(--black);
+}
+
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 3px;
+}
+
+.work-card {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  cursor: pointer;
+  background: #1a1a1a;
+}
+.work-card-inner {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 30px;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(0deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.2) 50%, transparent 100%);
+  transition: background 0.4s;
+}
+.work-card:hover .work-card-inner {
+  background: linear-gradient(0deg, rgba(6,44,84,0.9) 0%, rgba(6,44,84,0.3) 60%, transparent 100%);
+}
+
+.work-card .work-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.work-card .work-bg .pattern {
+  width: 100%; height: 100%;
+  opacity: 0.15;
+}
+
+.work-card h3 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.work-card .work-year {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--grey);
+  margin-bottom: 6px;
+}
+.work-card .work-tags {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--cream);
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+/* glitch on hover */
+.work-card:hover h3 {
+  animation: text-flicker 0.1s steps(1) 3;
+}
+@keyframes text-flicker {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.6; transform: translateX(2px); }
+  100% { opacity: 1; }
+}
+
+/* ============================================
+   NEWS / EXHIBITION SECTION
+   ============================================ */
+#news {
+  background: var(--red);
+  color: var(--white);
+  clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+  padding: 160px 40px;
+}
+#news .section-header h2 { color: var(--white); }
+#news .section-header h2::before { background: var(--white); }
+#news .section-number { color: rgba(240,236,227,0.1); }
+
+.news-list {
+  max-width: 900px;
+}
+.news-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 30px;
+  padding: 25px 0;
+  border-bottom: 1px solid rgba(240,236,227,0.15);
+  align-items: baseline;
+}
+.news-date {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--white);
+}
+.news-title {
+  font-family: var(--font-jp);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--white);
+}
+.news-venue {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(240,236,227,0.5);
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+#about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.about-left .section-header {
+  margin-bottom: 40px;
+}
+
+.about-bio {
+  font-family: var(--font-jp);
+  font-size: 15px;
+  line-height: 2;
+  color: var(--cream);
+  max-width: 500px;
+}
+
+.about-right {
+  padding-top: 80px;
+}
+
+.cv-block {
+  margin-bottom: 40px;
+}
+.cv-block h4 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 4px;
+  color: var(--accent-light);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.cv-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 16px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.cv-year {
+  font-family: var(--font-body);
+  color: var(--grey);
+}
+.cv-desc {
+  font-family: var(--font-jp);
+  color: var(--cream);
+}
+
+/* ============================================
+   STATEMENT SECTION
+   ============================================ */
+#statement {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 160px 40px;
+  position: relative;
+}
+
+.statement-text {
+  font-family: var(--font-jp);
+  font-size: 18px;
+  line-height: 2.2;
+  color: var(--cream);
+  position: relative;
+}
+.statement-text p {
+  margin-bottom: 2em;
+}
+
+.statement-deco {
+  position: absolute;
+  top: 100px; left: -60px;
+  width: 3px; height: 300px;
+  background: var(--accent-light);
+}
+.statement-deco-circle {
+  position: absolute;
+  bottom: 100px; right: -40px;
+  width: 200px; height: 200px;
+  border: 2px solid rgba(74,158,255,0.15);
+  border-radius: 50%;
+}
+
+/* ============================================
+   CONTACT SECTION
+   ============================================ */
+#contact {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+#contact .contact-heading {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 10vw, 140px);
+  letter-spacing: 6px;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+.contact-links {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.contact-link {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  border: 2px solid var(--accent-light);
+  padding: 14px 36px;
+  transition: all 0.3s;
+}
+.contact-link:hover {
+  background: var(--red);
+  color: var(--white);
+  border-color: var(--red);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  padding: 40px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--grey);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ============================================
+   SCROLL-TRIGGERED GLITCH BAR
+   ============================================ */
+.glitch-bar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+}
+.glitch-bar.active {
+  animation: full-glitch 0.2s steps(1);
+}
+@keyframes full-glitch {
+  0%   { opacity: 1; background: rgba(74,158,255,0.04); }
+  15%  { opacity: 1; clip-path: inset(10% 0 70% 0); background: rgba(0,255,255,0.08); transform: translateX(-4px); }
+  30%  { opacity: 1; clip-path: inset(50% 0 20% 0); background: rgba(74,158,255,0.06); transform: translateX(4px); }
+  45%  { opacity: 0; clip-path: inset(0); transform: translateX(0); }
+  100% { opacity: 0; }
+}
+
+/* ============================================
+   RANDOM GLITCH STRIPE (injected by JS)
+   ============================================ */
+.glitch-stripe {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(100,180,255,0.7);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 9997;
+  animation: stripe-flash 0.15s steps(1) forwards;
+}
+@keyframes stripe-flash {
+  0%   { opacity: 0.8; }
+  50%  { opacity: 0.4; transform: translateX(10px); }
+  100% { opacity: 0; }
+}
+
+/* ============================================
+   MOBILE RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  nav .nav-links { gap: 16px; }
+  nav .nav-links a { font-size: 12px; letter-spacing: 2px; }
+  section { padding: 80px 20px; }
+  #about { grid-template-columns: 1fr; gap: 40px; }
+  .about-right { padding-top: 0; }
+  .works-grid { grid-template-columns: 1fr; }
+  .hero-circle { width: 200px; height: 200px; right: -20px; }
+  .hero-year { font-size: 60px; bottom: 20px; right: 20px; }
+  .hero-train-wrapper { width: 95vw; transform: rotate(-4deg); }
+  .hero-content { padding-top: 3%; }
+  .hero-tagline { font-size: 10px; letter-spacing: 0.15em; }
+  #news { clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%); padding: 120px 20px; }
+  .news-item { grid-template-columns: 100px 1fr; gap: 16px; }
+  .contact-links { flex-direction: column; align-items: center; }
+  .statement-deco, .statement-deco-circle { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+<div class="glitch-bar" id="glitchBar"></div>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="logo">坂根大悟</div>
+  <ul class="nav-links">
+    <li><a href="#works">Works</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#statement">Statement</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-circle"></div>
+
+  <!-- Train silhouette built with SVG + text overlay -->
+  <div class="hero-train-wrapper">
+
+    <!-- SVG Train Silhouette -->
+    <svg class="hero-train-svg" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <!-- Speed lines (架線/空気感) -->
+      <line x1="0" y1="80" x2="1200" y2="80" stroke="rgba(240,236,227,0.06)" stroke-width="1"/>
+      <line x1="0" y1="100" x2="1200" y2="100" stroke="rgba(240,236,227,0.04)" stroke-width="1"/>
+      <line x1="0" y1="340" x2="1200" y2="340" stroke="rgba(240,236,227,0.08)" stroke-width="1.5"/>
+
+      <!-- Locomotive nose (先頭車両ノーズ) -->
+      <path d="M 50,320 Q 50,140 180,130 L 180,320 Z" fill="rgba(240,236,227,0.08)" />
+      <!-- Nose highlight stripe -->
+      <path d="M 80,310 Q 85,180 175,170 L 175,200 Q 100,210 95,310 Z" fill="var(--accent-light)" opacity="0.15"/>
+
+      <!-- Car body 1 — DAIGO -->
+      <rect x="180" y="130" width="420" height="190" fill="rgba(240,236,227,0.06)" rx="2"/>
+      <!-- Window stripe on car 1 -->
+      <rect x="180" y="155" width="420" height="12" fill="var(--accent-light)" opacity="0.1" rx="1"/>
+
+      <!-- Car body 2 — SAKANE -->
+      <rect x="608" y="130" width="540" height="190" fill="rgba(240,236,227,0.04)" rx="2"/>
+      <!-- Window stripe on car 2 -->
+      <rect x="608" y="155" width="540" height="12" fill="var(--accent-light)" opacity="0.07" rx="1"/>
+
+      <!-- Rail (レール) -->
+      <rect x="0" y="324" width="1200" height="3" fill="rgba(240,236,227,0.2)"/>
+      <rect x="0" y="332" width="1200" height="2" fill="rgba(240,236,227,0.1)"/>
+
+      <!-- Wheels (車輪) -->
+      <circle cx="260" cy="325" r="18" fill="none" stroke="rgba(240,236,227,0.12)" stroke-width="2"/>
+      <circle cx="260" cy="325" r="5" fill="rgba(240,236,227,0.08)"/>
+      <circle cx="520" cy="325" r="18" fill="none" stroke="rgba(240,236,227,0.12)" stroke-width="2"/>
+      <circle cx="520" cy="325" r="5" fill="rgba(240,236,227,0.08)"/>
+      <circle cx="700" cy="325" r="18" fill="none" stroke="rgba(240,236,227,0.12)" stroke-width="2"/>
+      <circle cx="700" cy="325" r="5" fill="rgba(240,236,227,0.08)"/>
+      <circle cx="1000" cy="325" r="18" fill="none" stroke="rgba(240,236,227,0.12)" stroke-width="2"/>
+      <circle cx="1000" cy="325" r="5" fill="rgba(240,236,227,0.08)"/>
+
+      <!-- Overhead wire (架線) converging to vanishing point — Cassandre style -->
+      <line x1="1200" y1="30" x2="50" y2="120" stroke="rgba(240,236,227,0.06)" stroke-width="1"/>
+      <line x1="1200" y1="15" x2="50" y2="115" stroke="rgba(240,236,227,0.04)" stroke-width="1"/>
+
+      <!-- Coupling between cars -->
+      <rect x="596" y="200" width="16" height="60" fill="rgba(240,236,227,0.08)" rx="2"/>
+    </svg>
+
+    <!-- Text overlay on the train body -->
+    <div class="hero-content">
+      <span class="hero-name-line1 glitch-text" data-text="DAIGO">DAIGO</span>
+      <span class="hero-name-line2 glitch-text" data-text="SAKANE">SAKANE</span>
+    </div>
+  </div>
+
+  <p class="hero-tagline glitch-text" data-text="Collage / Glitch / Research / History / Media Artist">Collage / Glitch / Research / History / Media Artist</p>
+
+  <div class="scroll-indicator">scroll ↓</div>
+</section>
+
+<!-- WORKS -->
+<section id="works">
+  <div class="section-header reveal">
+    <span class="section-number">01</span>
+    <h2 class="glitch-text" data-text="WORKS">Works</h2>
+  </div>
+  <div class="works-grid">
+
+    <div class="work-card reveal glitch-block">
+      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><line x1="0" y1="0" x2="400" y2="300" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/><line x1="0" y1="50" x2="400" y2="300" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><circle cx="200" cy="150" r="80" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/></svg></div>
+      <div class="work-card-inner">
+        <span class="work-year">2025–2026</span>
+        <h3>人工廃墟 M2</h3>
+        <span class="work-tags">UE5 / LiDAR / Multichannel Audio / Physical Controller</span>
+      </div>
+    </div>
+
+    <div class="work-card reveal glitch-block">
+      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><rect x="50" y="30" width="300" height="240" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><rect x="100" y="80" width="200" height="140" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/></svg></div>
+      <div class="work-card-inner">
+        <span class="work-year">2026</span>
+        <h3>E-Waste Invaders</h3>
+        <span class="work-tags">Godot 4 / Serious Game / Documentary</span>
+      </div>
+    </div>
+
+    <div class="work-card reveal glitch-block">
+      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><polygon points="200,20 380,280 20,280" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.25"/></svg></div>
+      <div class="work-card-inner">
+        <span class="work-year">2026</span>
+        <h3>DIG SHIBUYA</h3>
+        <span class="work-tags">Public AR / Hachiko / Urban Archaeology</span>
+      </div>
+    </div>
+
+    <div class="work-card reveal glitch-block">
+      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><circle cx="100" cy="150" r="100" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><circle cx="300" cy="150" r="100" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/></svg></div>
+      <div class="work-card-inner">
+        <span class="work-year">2023</span>
+        <h3>大宮曼荼羅</h3>
+        <span class="work-tags">PLATEAU / 3D City Model / Saitama Triennale</span>
+      </div>
+    </div>
+
+    <div class="work-card reveal glitch-block">
+      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><line x1="0" y1="150" x2="400" y2="150" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/><line x1="200" y1="0" x2="200" y2="300" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/></svg></div>
+      <div class="work-card-inner">
+        <span class="work-year">2022</span>
+        <h3>東京曼荼羅</h3>
+        <span class="work-tags">Roppongi Art Night / CG / Urban Memory</span>
+      </div>
+    </div>
+
+    <div class="work-card reveal glitch-block">
+      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><ellipse cx="200" cy="150" rx="180" ry="120" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/></svg></div>
+      <div class="work-card-inner">
+        <span class="work-year">2023</span>
+        <h3>文化庁メディア芸術クリエイター育成支援</h3>
+        <span class="work-tags">Agency for Cultural Affairs / Grant</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEWS / EXHIBITION -->
+<section id="news">
+  <div class="section-header reveal">
+    <span class="section-number">02</span>
+    <h2 class="glitch-text" data-text="NEWS">News</h2>
+  </div>
+  <div class="news-list">
+    <div class="news-item reveal">
+      <span class="news-date">2026</span>
+      <div>
+        <div class="news-title">DIG SHIBUYA 2026</div>
+        <div class="news-venue">Shibuya, Tokyo</div>
+      </div>
+    </div>
+    <div class="news-item reveal">
+      <span class="news-date">2025</span>
+      <div>
+        <div class="news-title">大宮曼荼羅 2025（個展）</div>
+        <div class="news-venue">盆栽四季の家, Omiya — アーツカウンシルさいたま助成</div>
+      </div>
+    </div>
+    <div class="news-item reveal">
+      <span class="news-date">2025</span>
+      <div>
+        <div class="news-title">GEIDAI GAMES 06</div>
+        <div class="news-venue">東京藝術大学 上野キャンパス</div>
+      </div>
+    </div>
+    <div class="news-item reveal">
+      <span class="news-date">2025</span>
+      <div>
+        <div class="news-title">芸術未来研究場展 2025</div>
+        <div class="news-venue">東京藝術大学大学美術館</div>
+      </div>
+    </div>
+    <div class="news-item reveal">
+      <span class="news-date">2024</span>
+      <div>
+        <div class="news-title">横浜微塵美展</div>
+        <div class="news-venue">Art Gallery OWL, Yokohama — 文化庁メディア芸術クリエイター育成支援事業</div>
+      </div>
+    </div>
+    <div class="news-item reveal">
+      <span class="news-date">2023</span>
+      <div>
+        <div class="news-title">大宮曼荼羅 — さいたま国際芸術祭</div>
+        <div class="news-venue">盆栽四季の家, Omiya</div>
+      </div>
+    </div>
+    <div class="news-item reveal">
+      <span class="news-date">2022</span>
+      <div>
+        <div class="news-title">六本木アートナイト・オープンコール</div>
+        <div class="news-venue">六本木ヒルズアリーナ, Tokyo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left">
+    <div class="section-header reveal">
+      <span class="section-number">03</span>
+      <h2 class="glitch-text" data-text="ABOUT">About</h2>
+    </div>
+    <div class="about-bio reveal">
+      <p>メディアアーティスト。学習院大学文学部史学科卒業後、東京藝術大学大学院映像研究科メディア映像専攻修了。</p>
+      <br>
+      <p>LiDARスキャン、PLATEAU 3Dモデル、ゲームエンジンを用いて、都市の歴史的記憶を空間化する作品を制作。「膨大な情報を編集せず並べる」ことで、線形的な歴史叙述の外側にある多声的な経験を生み出す。</p>
+      <br>
+      <p>廃墟、コラージュ、歴史叙述をめぐる理論と実践の交差点で活動。</p>
+    </div>
+  </div>
+  <div class="about-right reveal">
+    <div class="cv-block">
+      <h4>Biography</h4>
+      <div class="cv-item">
+        <span class="cv-year">1995</span>
+        <span class="cv-desc">大宮市出身</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2013</span>
+        <span class="cv-desc">川越東高校 卒業</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2017</span>
+        <span class="cv-desc">学習院大学 文学部史学科 卒業</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2024</span>
+        <span class="cv-desc">東京藝術大学大学院 映像研究科 メディア映像専攻 入学</span>
+      </div>
+    </div>
+    <div class="cv-block">
+      <h4>Solo Exhibition</h4>
+      <div class="cv-item">
+        <span class="cv-year">2025</span>
+        <span class="cv-desc">「大宮曼荼羅 2025」盆栽四季の家, 大宮</span>
+      </div>
+    </div>
+    <div class="cv-block">
+      <h4>Group Exhibition</h4>
+      <div class="cv-item">
+        <span class="cv-year">2026</span>
+        <span class="cv-desc">DIG SHIBUYA 2026</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2025</span>
+        <span class="cv-desc">「GEIDAI GAMES 06」東京藝術大学 上野キャンパス</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2025</span>
+        <span class="cv-desc">芸術未来研究場展 2025 / 東京藝術大学大学美術館</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2024</span>
+        <span class="cv-desc">「横浜微塵美展」文化庁メディア芸術クリエイター育成支援事業 / Art Gallery OWL, 横浜</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2023</span>
+        <span class="cv-desc">「大宮曼荼羅」さいたま国際芸術祭公募プログラム / 盆栽四季の家, 大宮</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2022</span>
+        <span class="cv-desc">六本木アートナイト・オープンコールプロジェクト / 六本木ヒルズアリーナ</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2021</span>
+        <span class="cv-desc">「遊園的明滅展」高架画廊, 神田</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2021</span>
+        <span class="cv-desc">「流展」シェアプレイス調布多摩川 / 「再展」DHU八王子キャンパス</span>
+      </div>
+    </div>
+    <div class="cv-block">
+      <h4>Screening</h4>
+      <div class="cv-item">
+        <span class="cv-year">2021</span>
+        <span class="cv-desc">ゆうばり国際ファンタスティック映画祭 短編入選作品上映</span>
+      </div>
+    </div>
+    <div class="cv-block">
+      <h4>Grants & Awards</h4>
+      <div class="cv-item">
+        <span class="cv-year">2025</span>
+        <span class="cv-desc">アーツカウンシルさいたま助成（大宮曼荼羅 2025）</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2023</span>
+        <span class="cv-desc">令和5年度 文化庁メディア芸術クリエイター育成支援事業 選出</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2023</span>
+        <span class="cv-desc">さいたま国際芸術祭公募作品 選出</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2022</span>
+        <span class="cv-desc">六本木アートナイト・オープンコールプロジェクト入選</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2021</span>
+        <span class="cv-desc">カルト国際映画祭入選（監督・編集・脚本・撮影）</span>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2015</span>
+        <span class="cv-desc">銚子さんまマラソン 10キロ 優勝 / 箱根駅伝予選会 出場</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section id="statement">
+  <div class="statement-deco"></div>
+  <div class="statement-deco-circle"></div>
+  <div class="section-header reveal">
+    <span class="section-number">04</span>
+    <h2 class="glitch-text" data-text="STATEMENT">Statement</h2>
+  </div>
+  <div class="statement-text reveal">
+    <p>歴史は常に、語る者の視点によって編集される。わたしの制作は、その「編集」を意図的に拒否し、膨大な情報をそのまま空間に配置することで、鑑賞者自身が歴史の中を歩く経験を生み出すことにある。</p>
+    <p>CG都市モデル、LiDARによる廃墟のスキャン、ゲームエンジンによるインタラクション——これらの技術は、過去と現在を同一平面上に並置するための道具として機能する。プレイヤーは建物を崩壊させながら都市を進む。その行為自体が、開発と破壊の共犯関係を体験的に問いかける。</p>
+    <p>ベンヤミンの弁証法的イメージ、廃墟の美学、そしてゲームにおける共犯性の理論を手がかりに、線形的でない歴史叙述の可能性を探り続けている。</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="contact-heading glitch-text reveal" data-text="CONTACT">Contact</h2>
+  <div class="contact-links reveal">
+    <a href="mailto:diego.sakane@gmail.com" class="contact-link">Email</a>
+    <a href="https://www.instagram.com/daigorere/" class="contact-link" target="_blank">Instagram</a>
+    <a href="https://x.com/perfect_blue5" class="contact-link" target="_blank">X / Twitter</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 DAIGO SAKANE — ALL RIGHTS RESERVED</p>
+</footer>
+
+<script>
+/* ============================================
+   SCROLL-TRIGGERED GLITCH SYSTEM
+   ============================================ */
+(() => {
+  const glitchBar = document.getElementById('glitchBar');
+  let lastScroll = 0;
+  let glitchCooldown = false;
+  let ticking = false;
+
+  // Scroll-based glitch trigger
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const delta = Math.abs(scrollY - lastScroll);
+
+        // Trigger glitch when scrolling fast
+        if (delta > 40 && !glitchCooldown) {
+          triggerGlitch(delta);
+          glitchCooldown = true;
+          setTimeout(() => glitchCooldown = false, 200);
+        }
+
+        lastScroll = scrollY;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  function triggerGlitch(intensity) {
+    // Full-screen glitch bar
+    glitchBar.classList.add('active');
+    setTimeout(() => glitchBar.classList.remove('active'), 200);
+
+    // Random stripes
+    const stripeCount = Math.min(Math.floor(intensity / 30), 5);
+    for (let i = 0; i < stripeCount; i++) {
+      setTimeout(() => spawnStripe(), i * 30);
+    }
+
+    // Glitch nearest elements
+    const glitchTexts = document.querySelectorAll('.glitch-text');
+    glitchTexts.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top > -100 && rect.top < window.innerHeight + 100) {
+        el.classList.add('glitching');
+        setTimeout(() => el.classList.remove('glitching'), 150 + Math.random() * 200);
+      }
+    });
+
+    // Glitch blocks
+    const blocks = document.querySelectorAll('.glitch-block');
+    blocks.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top > -100 && rect.top < window.innerHeight + 100) {
+        if (Math.random() > 0.5) {
+          el.classList.add('glitching');
+          setTimeout(() => el.classList.remove('glitching'), 100 + Math.random() * 150);
+        }
+      }
+    });
+
+    // RGB shift on hero diagonal
+    const diagonal = document.querySelector('.hero-diagonal');
+    if (diagonal) {
+      const shift = (Math.random() - 0.5) * 4;
+      diagonal.style.transform = `rotate(-12deg) translateX(${shift}px)`;
+      setTimeout(() => diagonal.style.transform = 'rotate(-12deg)', 100);
+    }
+  }
+
+  function spawnStripe() {
+    const stripe = document.createElement('div');
+    stripe.className = 'glitch-stripe';
+    stripe.style.top = Math.random() * 100 + 'vh';
+    stripe.style.height = (2 + Math.random() * 6) + 'px';
+    document.body.appendChild(stripe);
+    setTimeout(() => stripe.remove(), 200);
+  }
+
+  /* ============================================
+     REVEAL ON SCROLL (Intersection Observer)
+     ============================================ */
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => revealObserver.observe(el));
+
+  /* ============================================
+     HERO GLITCH ON LOAD
+     ============================================ */
+  window.addEventListener('load', () => {
+    const heroNames = document.querySelectorAll('.hero-name-line1, .hero-name-line2, .hero-tagline');
+    heroNames.forEach((el, i) => {
+      setTimeout(() => {
+        el.classList.add('glitching');
+        setTimeout(() => el.classList.remove('glitching'), 400);
+      }, i * 150);
+    });
+    // Second burst
+    setTimeout(() => {
+      heroNames.forEach(el => {
+        el.classList.add('glitching');
+        setTimeout(() => el.classList.remove('glitching'), 200);
+      });
+    }, 1200);
+  });
+
+  /* ============================================
+     RANDOM AMBIENT GLITCH
+     ============================================ */
+  setInterval(() => {
+    if (Math.random() > 0.85) {
+      const texts = document.querySelectorAll('.glitch-text');
+      const randomText = texts[Math.floor(Math.random() * texts.length)];
+      if (randomText) {
+        randomText.classList.add('glitching');
+        setTimeout(() => randomText.classList.remove('glitching'), 100 + Math.random() * 200);
+      }
+    }
+  }, 3000);
+
+  /* ============================================
+     SMOOTH NAV SCROLL
+     ============================================ */
+  document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
