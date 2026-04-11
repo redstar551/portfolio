@@ -74,6 +74,8 @@ nav .nav-links a:hover::after { width: 100%; }
 .about-left .section-header h2 { font-family: var(--font-display); font-size: clamp(48px,8vw,100px); letter-spacing: 6px; text-transform: uppercase; color: var(--white); display: inline-block; position: relative; }
 .about-left .section-header h2::before { content:''; position: absolute; left: -20px; top: 50%; width: 8px; height: 60%; background: var(--accent); transform: translateY(-50%); }
 .about-bio { font-family: var(--font-jp); font-size: 15px; line-height: 2; color: var(--cream); max-width: 500px; }
+.about-photo { margin-top: 40px; max-width: 400px; }
+.about-photo img { width: 100%; height: auto; display: block; filter: contrast(1.05) brightness(0.95); }
 .about-right { padding-top: 80px; }
 .cv-block { margin-bottom: 40px; }
 .cv-block h4 { font-family: var(--font-display); font-size: 22px; letter-spacing: 4px; color: var(--accent); margin-bottom: 16px; text-transform: uppercase; }
@@ -82,11 +84,16 @@ nav .nav-links a:hover::after { width: 100%; }
 .cv-desc { font-family: var(--font-jp); color: var(--cream); }
 
 /* CONTACT */
-#contact { min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 40px; }
-.contact-heading { font-family: var(--font-display); font-size: clamp(48px,10vw,120px); letter-spacing: 6px; color: var(--white); text-transform: uppercase; margin-bottom: 30px; }
-.contact-links { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; }
-.contact-link { font-family: var(--font-display); font-size: 20px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); border: 2px solid var(--accent); padding: 14px 36px; transition: all 0.3s; }
-.contact-link:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+#contact { min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 40px; margin: 0; }
+.contact-heading { font-family: var(--font-display); font-size: clamp(48px,10vw,120px); letter-spacing: 6px; color: var(--white); text-transform: uppercase; margin: 0 auto 30px; display: block; text-align: center; }
+.contact-links { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; align-items: center; margin: 0 auto; padding: 0; list-style: none; }
+.contact-link { font-family: var(--font-display); font-size: 18px; letter-spacing: 4px; text-transform: uppercase; padding: 14px 32px; transition: all 0.3s; border: 2px solid; display: inline-block; text-align: center; }
+.contact-email { color: var(--accent); border-color: var(--accent); }
+.contact-email:hover { background: var(--accent); color: var(--black); }
+.contact-ig { color: #E1306C; border-color: #E1306C; }
+.contact-ig:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: var(--white); border-color: #dc2743; }
+.contact-x { color: #fff; border-color: #fff; }
+.contact-x:hover { background: #fff; color: var(--black); }
 
 /* TRAIN FOOTER */
 #train-footer { padding: 60px 40px 20px; display: flex; flex-direction: column; align-items: center; background: var(--black); overflow: hidden; }
@@ -138,27 +145,27 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
   <div class="works-grid">
     <div class="work-card reveal glitch-block">
       <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><line x1="0" y1="0" x2="400" y2="300" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/><circle cx="200" cy="150" r="80" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/></svg></div>
-      <div class="work-card-inner"><span class="work-year">2025–2026</span><h3>人工廃墟 M2</h3><span class="work-tags">UE5 / LiDAR / Multichannel Audio / Physical Controller</span></div>
+      <div class="work-card-inner"><span class="work-year">2026</span><h3>人工廃墟 M2</h3><span class="work-tags">Interactive Installation</span></div>
     </div>
     <div class="work-card reveal glitch-block">
       <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><rect x="50" y="30" width="300" height="240" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><rect x="100" y="80" width="200" height="140" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/></svg></div>
-      <div class="work-card-inner"><span class="work-year">2026</span><h3>E-Waste Invaders</h3><span class="work-tags">Godot 4 / Serious Game / Documentary</span></div>
+      <div class="work-card-inner"><span class="work-year">2026</span><h3>E-Waste Invaders</h3><span class="work-tags">Game</span></div>
     </div>
     <div class="work-card reveal glitch-block">
       <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><polygon points="200,20 380,280 20,280" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.25"/></svg></div>
-      <div class="work-card-inner"><span class="work-year">2026</span><h3>DIG SHIBUYA</h3><span class="work-tags">Public AR / Hachiko / Urban Archaeology</span></div>
+      <div class="work-card-inner"><span class="work-year">2026</span><h3>DIG SHIBUYA</h3><span class="work-tags">Public AR</span></div>
     </div>
     <div class="work-card reveal glitch-block">
       <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><circle cx="100" cy="150" r="100" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><circle cx="300" cy="150" r="100" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/></svg></div>
-      <div class="work-card-inner"><span class="work-year">2025</span><h3>大宮曼荼羅 2025</h3><span class="work-tags">Solo Exhibition / PLATEAU / Bonsai Shiki-no-ie</span></div>
+      <div class="work-card-inner"><span class="work-year">2025</span><h3>大宮曼荼羅 2025</h3><span class="work-tags">Installation</span></div>
     </div>
     <div class="work-card reveal glitch-block">
       <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><line x1="0" y1="150" x2="400" y2="150" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/><line x1="200" y1="0" x2="200" y2="300" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/></svg></div>
-      <div class="work-card-inner"><span class="work-year">2023</span><h3>大宮曼荼羅</h3><span class="work-tags">Saitama Triennale / 3D City Model / Collage</span></div>
+      <div class="work-card-inner"><span class="work-year">2023</span><h3>大宮曼荼羅</h3><span class="work-tags">Installation</span></div>
     </div>
     <div class="work-card reveal glitch-block">
       <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><ellipse cx="200" cy="150" rx="180" ry="120" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/></svg></div>
-      <div class="work-card-inner"><span class="work-year">2022</span><h3>東京曼荼羅</h3><span class="work-tags">Roppongi Art Night / CG / Urban Memory</span></div>
+      <div class="work-card-inner"><span class="work-year">2022</span><h3>東京曼荼羅</h3><span class="work-tags">Installation / CG</span></div>
     </div>
   </div>
 </section>
@@ -167,9 +174,11 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
   <div class="about-left">
     <div class="section-header reveal"><h2 class="glitch-text" data-text="ABOUT">About</h2></div>
     <div class="about-bio reveal">
-      <p>メディアアーティスト。学習院大学文学部史学科卒業後、東京藝術大学大学院映像研究科メディア映像専攻修了。</p><br>
-      <p>LiDARスキャン、PLATEAU 3Dモデル、ゲームエンジンを用いて、都市の歴史的記憶を空間化する作品を制作。「膨大な情報を編集せず並べる」ことで、線形的な歴史叙述の外側にある多声的な経験を生み出す。</p><br>
-      <p>廃墟、コラージュ、歴史叙述をめぐる理論と実践の交差点で活動。</p>
+      <p>大宮市出身。映像作家。都市愛好家。学習院大学文学部史学科卒業。東京藝術大学大学院映像研究科メディア映像修了。歴史学科で培ったリサーチ手法を基に、その土地の持つ歴史や都市を題材に、立体、映像、ゲームエンジンを組み合わせ、作品を制作。</p><br>
+      <p>モニターを壊して物理グリッチを意図的に作ること、散歩しながらゲームを作ること、コラージュ映像制作、VJが趣味。主な展示歴に2023年 さいたま国際芸術祭、2022年六本木アートナイト・オープンコールプロジェクトなど。</p>
+    </div>
+    <div class="about-photo reveal">
+      <img src="profile.jpg" alt="Daigo Sakane" />
     </div>
   </div>
   <div class="about-right reveal">
@@ -177,31 +186,32 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
       <div class="cv-item"><span class="cv-year">1995</span><span class="cv-desc">大宮市出身</span></div>
       <div class="cv-item"><span class="cv-year">2013</span><span class="cv-desc">川越東高校 卒業</span></div>
       <div class="cv-item"><span class="cv-year">2017</span><span class="cv-desc">学習院大学 文学部史学科 卒業</span></div>
-      <div class="cv-item"><span class="cv-year">2024</span><span class="cv-desc">東京藝術大学大学院 映像研究科 メディア映像専攻 入学</span></div>
+      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">東京藝術大学大学院 映像研究科 メディア映像専攻 修了</span></div>
     </div>
     <div class="cv-block"><h4>Solo Exhibition</h4>
       <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">「大宮曼荼羅 2025」盆栽四季の家, 大宮</span></div>
     </div>
     <div class="cv-block"><h4>Group Exhibition</h4>
-      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">DIG SHIBUYA 2026</span></div>
+      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">「DIG SHIBUYA 2026」渋谷ハチ公前広場, 渋谷</span></div>
+      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">「GEIDAI GAMES 07」東京藝術大学 上野キャンパス</span></div>
       <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">「GEIDAI GAMES 06」東京藝術大学 上野キャンパス</span></div>
-      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">芸術未来研究場展 2025 / 東京藝術大学大学美術館</span></div>
-      <div class="cv-item"><span class="cv-year">2024</span><span class="cv-desc">「横浜微塵美展」文化庁メディア芸術クリエイター育成支援事業 / Art Gallery OWL, 横浜</span></div>
-      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">「大宮曼荼羅」さいたま国際芸術祭公募プログラム / 盆栽四季の家, 大宮</span></div>
-      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">六本木アートナイト・オープンコールプロジェクト / 六本木ヒルズアリーナ</span></div>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">「芸術未来研究場展 2025」東京藝術大学大学美術館, 上野</span></div>
+      <div class="cv-item"><span class="cv-year">2024</span><span class="cv-desc">「横浜微塵美展」Art Gallery OWL, 横浜（文化庁メディア芸術クリエイター育成支援事業）</span></div>
+      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">「大宮曼荼羅」盆栽四季の家, 大宮（さいたま国際芸術祭公募プログラム）</span></div>
+      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">「六本木アートナイト・オープンコールプロジェクト」六本木ヒルズアリーナ, 六本木</span></div>
       <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">「遊園的明滅展」高架画廊, 神田</span></div>
-      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">「流展」シェアプレイス調布多摩川 / 「再展」DHU八王子キャンパス</span></div>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">「流展」シェアプレイス調布多摩川 /「再展」DHU八王子キャンパス</span></div>
     </div>
     <div class="cv-block"><h4>Screening</h4>
       <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">ゆうばり国際ファンタスティック映画祭 短編入選作品上映</span></div>
     </div>
     <div class="cv-block"><h4>Grants & Awards</h4>
       <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">アーツカウンシルさいたま助成（大宮曼荼羅 2025）</span></div>
-      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">令和5年度 文化庁メディア芸術クリエイター育成支援事業 選出</span></div>
-      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">さいたま国際芸術祭公募作品 選出</span></div>
-      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">六本木アートナイト・オープンコールプロジェクト入選</span></div>
-      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">カルト国際映画祭入選（監督・編集・脚本・撮影）</span></div>
-      <div class="cv-item"><span class="cv-year">2015</span><span class="cv-desc">銚子さんまマラソン 10キロ 優勝 / 箱根駅伝予選会 出場</span></div>
+      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">文化庁メディア芸術クリエイター育成支援事業 選出</span></div>
+      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">さいたま国際芸術祭 公募作品選出</span></div>
+      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">六本木アートナイト・オープンコールプロジェクト 入選</span></div>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">カルト国際映画祭 入選（監督・編集・脚本・撮影）</span></div>
+      <div class="cv-item"><span class="cv-year">2015</span><span class="cv-desc">銚子さんまマラソン 10km 優勝 / 箱根駅伝予選会 出場</span></div>
     </div>
   </div>
 </section>
@@ -209,9 +219,9 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
 <section id="contact">
   <h2 class="contact-heading glitch-text reveal" data-text="CONTACT">Contact</h2>
   <div class="contact-links reveal">
-    <a href="mailto:diego.sakane@gmail.com" class="contact-link">Email</a>
-    <a href="https://www.instagram.com/daigorere/" class="contact-link" target="_blank">Instagram</a>
-    <a href="https://x.com/perfect_blue5" class="contact-link" target="_blank">X / Twitter</a>
+    <a href="mailto:diego.sakane@gmail.com" class="contact-link contact-email">Email</a>
+    <a href="https://www.instagram.com/daigorere/" class="contact-link contact-ig" target="_blank">Instagram</a>
+    <a href="https://x.com/perfect_blue5" class="contact-link contact-x" target="_blank">X / Twitter</a>
   </div>
 </section>
 
