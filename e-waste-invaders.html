@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Waste Invaders - In the Glitch - — Daigo Sakane</title>
+<meta name="description" content="E-Waste Invaders - In the Glitch - — 意図的にグリッチを発生させたモニターによる彫刻作品。">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #062C54; --accent: #4A9EFF;
+  --black: #0A0A0A; --white: #F0ECE3; --cream: #E8E0D0; --grey: #888;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Space Mono', monospace;
+  --font-jp: 'Noto Sans JP', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: var(--font-body); font-size: 14px; line-height: 1.6; overflow-x: hidden; }
+::selection { background: var(--navy); color: var(--white); }
+a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--white); }
+
+.scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px); opacity: 0.5; }
+
+nav { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+nav .logo { font-family: var(--font-jp); font-weight: 400; font-size: 18px; letter-spacing: 4px; color: rgba(240,236,227,0.8); }
+nav .back-link { font-family: var(--font-display); font-size: 16px; letter-spacing: 3px; color: var(--white); text-transform: uppercase; }
+nav .back-link:hover { color: var(--accent); }
+
+.work-video-top { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #111; }
+.work-video-top iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+.work-info { max-width: 900px; margin: 0 auto; padding: 80px 40px; }
+
+.work-title { font-family: var(--font-jp); font-weight: 900; font-size: clamp(28px, 5vw, 48px); color: var(--white); margin-bottom: 8px; }
+.work-meta { font-family: var(--font-body); font-size: 13px; letter-spacing: 3px; color: var(--grey); text-transform: uppercase; margin-bottom: 50px; }
+
+.work-description { font-family: var(--font-jp); font-size: 16px; line-height: 2; color: var(--cream); margin-bottom: 50px; }
+.work-description p { margin-bottom: 1.2em; }
+
+.work-details { border-top: 1px solid rgba(240,236,227,0.1); padding-top: 40px; margin-bottom: 50px; }
+.work-detail-row { display: grid; grid-template-columns: 140px 1fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(240,236,227,0.05); }
+.work-detail-label { font-family: var(--font-display); font-size: 16px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; }
+.work-detail-value { font-family: var(--font-jp); font-size: 14px; color: var(--cream); }
+
+.work-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 50px; }
+.work-gallery img { width: 100%; height: auto; display: block; }
+.work-gallery-full { grid-column: 1 / -1; }
+
+.work-english { border-top: 1px solid rgba(240,236,227,0.1); padding-top: 40px; margin-bottom: 50px; }
+.work-english-heading { font-family: var(--font-display); font-size: 24px; letter-spacing: 4px; color: var(--accent); margin-bottom: 20px; }
+
+.work-nav { display: flex; justify-content: space-between; padding: 40px 0; border-top: 1px solid rgba(240,236,227,0.1); }
+.work-nav a { font-family: var(--font-display); font-size: 18px; letter-spacing: 3px; text-transform: uppercase; color: var(--grey); transition: color 0.3s; }
+.work-nav a:hover { color: var(--white); }
+
+footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); font-size: 11px; letter-spacing: 3px; color: rgba(240,236,227,0.4); }
+
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .work-info { padding: 50px 20px; }
+  .work-gallery { grid-template-columns: 1fr; }
+  .work-detail-row { grid-template-columns: 1fr; gap: 4px; }
+}
+</style>
+</head>
+<body>
+<div class="scanlines"></div>
+
+<nav>
+  <a href="index.html" class="logo">坂根大悟</a>
+  <a href="index.html#works" class="back-link">← Works</a>
+</nav>
+
+<div class="work-video-top">
+  <iframe src="https://player.vimeo.com/video/1182410678" allowfullscreen></iframe>
+</div>
+
+<div class="work-info">
+
+  <h1 class="work-title">E-Waste Invaders - In the Glitch -</h1>
+  <p class="work-meta">2026 — Game Installation</p>
+
+  <div class="work-description">
+    <p>意図的にグリッチを発生させたモニターによる彫刻作品。通常、グリッチはランダムな破壊として受け取られるが、本作では偏光板を意図的に損傷させることで、その偶発性を制御可能なものへと転換することを試みている。</p>
+    <p>モニターの破損によってレベルデザインされている。</p>
+    <p style="margin-top:1.5em;">発表：GEIDAI GAMES 07（2026年3月、東京藝術大学 大学院映像研究科 ゲームコース展）</p>
+  </div>
+
+  <div class="work-details">
+    <div class="work-detail-row">
+      <span class="work-detail-label">Year</span>
+      <span class="work-detail-value">2026</span>
+    </div>
+    <div class="work-detail-row">
+      <span class="work-detail-label">Genre</span>
+      <span class="work-detail-value">Game Installation</span>
+    </div>
+    <div class="work-detail-row">
+      <span class="work-detail-label">Venue</span>
+      <span class="work-detail-value">GEIDAI GAMES 07, BankART Station, Yokohama</span>
+    </div>
+    <div class="work-detail-row">
+      <span class="work-detail-label">Tech</span>
+      <span class="work-detail-value">Godot 4</span>
+    </div>
+  </div>
+
+  <!-- ギャラリー（画像を追加する場合はコメントを外す）
+  <div class="work-gallery">
+    <img src="images/ewaste-01.jpg" alt="">
+    <img src="images/ewaste-02.jpg" alt="">
+  </div>
+  -->
+
+  <div class="work-english">
+    <h2 class="work-english-heading">EN</h2>
+    <div class="work-description">
+      <p>A sculptural work using monitors with intentionally induced glitches. While glitches are typically perceived as random destruction, this work attempts to transform that contingency into something controllable by deliberately damaging the polarizing film.</p>
+      <p>The level design is shaped by the physical damage to the monitors.</p>
+    </div>
+  </div>
+
+  <div class="work-nav">
+    <a href="jinko-haikyo-m2.html">← Prev</a>
+    <a href="index.html#works">All Works</a>
+  </div>
+
+</div>
+
+<footer><p>© 2026 DAIGO SAKANE</p></footer>
+</body>
+</html>
