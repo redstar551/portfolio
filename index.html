@@ -57,7 +57,7 @@ nav .nav-links a:hover::after { width: 100%; }
 @keyframes sd { 0%{top:0}100%{top:100%} }
 
 .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; position: relative; z-index: 1; }
-.work-card { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: pointer; background: #111; }
+.work-card { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: pointer; background: #111; display: block; color: inherit; text-decoration: none; }
 .work-card-inner { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; position: relative; z-index: 2; background: linear-gradient(0deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.15) 50%, transparent 100%); transition: background 0.4s; }
 .work-card:hover .work-card-inner { background: linear-gradient(0deg, rgba(6,44,84,0.9) 0%, rgba(6,44,84,0.3) 60%, transparent 100%); }
 .work-card .work-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
@@ -143,10 +143,10 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
 
 <section id="works">
   <div class="works-grid">
-    <div class="work-card reveal glitch-block">
+    <a href="jinko-haikyo-m2.html" class="work-card reveal glitch-block">
       <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><line x1="0" y1="0" x2="400" y2="300" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/><circle cx="200" cy="150" r="80" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/></svg></div>
       <div class="work-card-inner"><span class="work-year">2026</span><h3>人工廃墟 M2</h3><span class="work-tags">Game Installation</span></div>
-    </div>
+    </a>
     <div class="work-card reveal glitch-block">
       <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><rect x="50" y="30" width="300" height="240" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><rect x="100" y="80" width="200" height="140" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/></svg></div>
       <div class="work-card-inner"><span class="work-year">2026</span><h3>E-Waste Invaders</h3><span class="work-tags">Game Installation</span></div>
