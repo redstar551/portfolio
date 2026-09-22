@@ -62,6 +62,8 @@ nav .nav-links a:hover::after { width: 100%; }
 .work-card:hover .work-card-inner { background: linear-gradient(0deg, rgba(6,44,84,0.9) 0%, rgba(6,44,84,0.3) 60%, transparent 100%); }
 .work-card .work-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .work-card .work-bg .pattern { width: 100%; height: 100%; opacity: 0.15; }
+.work-card .work-bg .thumb { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+.work-card:hover .work-bg .thumb { transform: scale(1.04); }
 .work-card h3 { font-family: var(--font-jp); font-weight: 700; font-size: 18px; letter-spacing: 1px; color: var(--white); }
 .work-card .work-year { font-family: var(--font-body); font-size: 11px; letter-spacing: 3px; color: var(--grey); margin-bottom: 4px; }
 .work-card .work-tags { font-family: var(--font-body); font-size: 9px; letter-spacing: 2px; color: var(--cream); margin-top: 6px; text-transform: uppercase; }
@@ -84,12 +86,10 @@ nav .nav-links a:hover::after { width: 100%; }
 .cv-desc { font-family: var(--font-jp); color: var(--cream); }
 
 /* CONTACT */
-#contact { min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 40px; margin: 0; }
+#sns { min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 40px; margin: 0; }
 .contact-heading { font-family: var(--font-display); font-size: clamp(48px,10vw,120px); letter-spacing: 6px; color: var(--white); text-transform: uppercase; margin: 0 auto 30px; display: block; text-align: center; }
 .contact-links { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; align-items: center; margin: 0 auto; padding: 0; list-style: none; }
 .contact-link { font-family: var(--font-display); font-size: 18px; letter-spacing: 4px; text-transform: uppercase; padding: 14px 32px; transition: all 0.3s; border: 2px solid; display: inline-block; text-align: center; }
-.contact-email { color: var(--accent); border-color: var(--accent); }
-.contact-email:hover { background: var(--accent); color: var(--black); }
 .contact-ig { color: #E1306C; border-color: #E1306C; }
 .contact-ig:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: var(--white); border-color: #dc2743; }
 .contact-x { color: #fff; border-color: #fff; }
@@ -97,13 +97,16 @@ nav .nav-links a:hover::after { width: 100%; }
 
 /* TRAIN FOOTER */
 #train-footer { padding: 60px 40px 20px; display: flex; flex-direction: column; align-items: center; background: var(--black); overflow: hidden; }
-.train-wrapper { position: relative; width: 75vw; max-width: 900px; transform: rotate(-6deg); margin-bottom: 20px; transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.2s ease; cursor: pointer; }
-.train-wrapper:hover { transform: rotate(-6deg) translateX(-120vw); opacity: 0; }
-.train-svg { width: 100%; height: auto; display: block; }
+.train-wrapper { position: relative; width: 75vw; max-width: 900px; transform: rotate(-6deg); margin-bottom: 20px; cursor: pointer; }
+/* 線路・架線（.train-track）は固定し、車体と車輪（.train-body）だけが走り去る */
+.train-track { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: scaleX(-1); }
+.train-body { position: relative; transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.2s ease; }
+.train-wrapper:hover .train-body { transform: translateX(120vw); opacity: 0; }
+.train-svg { width: 100%; height: auto; display: block; transform: scaleX(-1); }
 .train-text { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; pointer-events: none; }
 .train-name1, .train-name2 { font-family: var(--font-display); font-size: clamp(16px,3vw,38px); line-height: 1; color: rgba(220,216,207,0.85); text-transform: uppercase; position: absolute; text-align: center; top: 60%; translate: 0 -50%; transform: scaleY(1.15); }
-.train-name1 { left: 15%; width: 35%; letter-spacing: 0.3em; }
-.train-name2 { left: 51%; width: 45%; letter-spacing: 0.45em; }
+.train-name1 { left: 4.5%; width: 45%; letter-spacing: 0.45em; }
+.train-name2 { left: 50%; width: 35%; letter-spacing: 0.3em; }
 
 footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); font-size: 11px; letter-spacing: 3px; color: rgba(240,236,227,0.4); background: var(--black); }
 
@@ -123,7 +126,7 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
   .work-card h3 { font-size: 14px; } .work-card-inner { padding: 14px; }
   #about { grid-template-columns: 1fr; gap: 40px; padding: 80px 20px; } .about-right { padding-top: 0; }
   .train-wrapper { width: 95vw; transform: rotate(-4deg); }
-  .contact-links { flex-direction: column; align-items: center; } #contact { padding: 80px 20px; }
+  .contact-links { flex-direction: column; align-items: center; } #sns { padding: 80px 20px; }
 }
 @media (max-width: 480px) { .works-grid { grid-template-columns: 1fr; } }
 </style>
@@ -137,19 +140,19 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
   <ul class="nav-links">
     <li><a href="#works">Works</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
 
 <section id="works">
   <div class="works-grid">
     <a href="jinko-haikyo-m2.html" class="work-card reveal glitch-block">
-      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><line x1="0" y1="0" x2="400" y2="300" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/><circle cx="200" cy="150" r="80" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/></svg></div>
+      <div class="work-bg"><img class="thumb" src="images/thumb-jinko-haikyo-m2.jpg" alt="人工廃墟 M2" loading="lazy"></div>
       <div class="work-card-inner"><span class="work-year">2026</span><h3>人工廃墟 M2</h3><span class="work-tags">Game Installation</span></div>
     </a>
     <a href="e-waste-invaders.html" class="work-card reveal glitch-block">
-      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><rect x="50" y="30" width="300" height="240" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><rect x="100" y="80" width="200" height="140" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/></svg></div>
-      <div class="work-card-inner"><span class="work-year">2026</span><h3>E-Waste Invaders - In the Glitch -</h3><span class="work-tags">Game Installation</span></div>
+      <div class="work-bg"><img class="thumb" src="images/thumb-e-waste-invaders.jpg" alt="In the Glitch - モニターの彫刻作品 -" loading="lazy"></div>
+      <div class="work-card-inner"><span class="work-year">2026</span><h3>In the Glitch<br>- モニター彫刻 -</h3><span class="work-tags">Game Installation</span></div>
     </a>
     <div class="work-card reveal glitch-block">
       <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><polygon points="200,20 380,280 20,280" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.25"/></svg></div>
@@ -241,10 +244,9 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
   </div>
 </section>
 
-<section id="contact">
-  <h2 class="contact-heading glitch-text reveal" data-text="CONTACT">Contact</h2>
+<section id="sns">
+  <h2 class="contact-heading glitch-text reveal" data-text="SNS">SNS</h2>
   <div class="contact-links reveal">
-    <a href="mailto:diego.sakane@gmail.com" class="contact-link contact-email">Email</a>
     <a href="https://www.instagram.com/daigorere/" class="contact-link contact-ig" target="_blank">Instagram</a>
     <a href="https://x.com/perfect_blue5" class="contact-link contact-x" target="_blank">X / Twitter</a>
   </div>
@@ -252,28 +254,32 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
 
 <section id="train-footer">
   <div class="train-wrapper">
-    <svg class="train-svg" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+    <svg class="train-track" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
       <line x1="0" y1="80" x2="1200" y2="80" stroke="rgba(240,236,227,0.06)" stroke-width="1"/>
       <line x1="0" y1="100" x2="1200" y2="100" stroke="rgba(240,236,227,0.04)" stroke-width="1"/>
-      <path d="M 50,320 Q 50,140 180,130 L 180,320 Z" fill="rgba(240,236,227,0.08)"/>
-      <path d="M 80,310 Q 85,180 175,170 L 175,200 Q 100,210 95,310 Z" fill="rgba(74,158,255,0.15)"/>
-      <rect x="180" y="130" width="420" height="190" fill="rgba(240,236,227,0.06)" rx="2"/>
-      <rect x="180" y="155" width="420" height="12" fill="rgba(74,158,255,0.1)" rx="1"/>
-      <rect x="608" y="130" width="540" height="190" fill="rgba(240,236,227,0.04)" rx="2"/>
-      <rect x="608" y="155" width="540" height="12" fill="rgba(74,158,255,0.07)" rx="1"/>
       <rect x="0" y="324" width="1200" height="3" fill="rgba(240,236,227,0.2)"/>
       <rect x="0" y="332" width="1200" height="2" fill="rgba(240,236,227,0.1)"/>
-      <circle cx="260" cy="325" r="18" fill="none" stroke="rgba(240,236,227,0.12)" stroke-width="2"/><circle cx="260" cy="325" r="5" fill="rgba(240,236,227,0.08)"/>
-      <circle cx="520" cy="325" r="18" fill="none" stroke="rgba(240,236,227,0.12)" stroke-width="2"/><circle cx="520" cy="325" r="5" fill="rgba(240,236,227,0.08)"/>
-      <circle cx="700" cy="325" r="18" fill="none" stroke="rgba(240,236,227,0.12)" stroke-width="2"/><circle cx="700" cy="325" r="5" fill="rgba(240,236,227,0.08)"/>
-      <circle cx="1000" cy="325" r="18" fill="none" stroke="rgba(240,236,227,0.12)" stroke-width="2"/><circle cx="1000" cy="325" r="5" fill="rgba(240,236,227,0.08)"/>
       <line x1="1200" y1="30" x2="50" y2="120" stroke="rgba(240,236,227,0.06)" stroke-width="1"/>
       <line x1="1200" y1="15" x2="50" y2="115" stroke="rgba(240,236,227,0.04)" stroke-width="1"/>
-      <rect x="596" y="200" width="16" height="60" fill="rgba(240,236,227,0.08)" rx="2"/>
     </svg>
-    <div class="train-text">
-      <span class="train-name1 glitch-text" data-text="DAIGO">DAIGO</span>
-      <span class="train-name2 glitch-text" data-text="SAKANE">SAKANE</span>
+    <div class="train-body">
+      <svg class="train-svg" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <path d="M 50,320 Q 50,140 180,130 L 180,320 Z" fill="rgba(240,236,227,0.08)"/>
+        <path d="M 80,310 Q 85,180 175,170 L 175,200 Q 100,210 95,310 Z" fill="rgba(74,158,255,0.15)"/>
+        <rect x="180" y="130" width="420" height="190" fill="rgba(240,236,227,0.06)" rx="2"/>
+        <rect x="180" y="155" width="420" height="12" fill="rgba(74,158,255,0.1)" rx="1"/>
+        <rect x="608" y="130" width="540" height="190" fill="rgba(240,236,227,0.04)" rx="2"/>
+        <rect x="608" y="155" width="540" height="12" fill="rgba(74,158,255,0.07)" rx="1"/>
+        <circle cx="260" cy="325" r="18" fill="none" stroke="rgba(240,236,227,0.12)" stroke-width="2"/><circle cx="260" cy="325" r="5" fill="rgba(240,236,227,0.08)"/>
+        <circle cx="520" cy="325" r="18" fill="none" stroke="rgba(240,236,227,0.12)" stroke-width="2"/><circle cx="520" cy="325" r="5" fill="rgba(240,236,227,0.08)"/>
+        <circle cx="700" cy="325" r="18" fill="none" stroke="rgba(240,236,227,0.12)" stroke-width="2"/><circle cx="700" cy="325" r="5" fill="rgba(240,236,227,0.08)"/>
+        <circle cx="1000" cy="325" r="18" fill="none" stroke="rgba(240,236,227,0.12)" stroke-width="2"/><circle cx="1000" cy="325" r="5" fill="rgba(240,236,227,0.08)"/>
+        <rect x="596" y="200" width="16" height="60" fill="rgba(240,236,227,0.08)" rx="2"/>
+      </svg>
+      <div class="train-text">
+        <span class="train-name1 glitch-text" data-text="DAIGO">DAIGO</span>
+        <span class="train-name2 glitch-text" data-text="SAKANE">SAKANE</span>
+      </div>
     </div>
   </div>
 </section>
