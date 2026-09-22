@@ -15,7 +15,7 @@ python -m http.server 8000
 ## 構成
 
 - `index.html` — トップページ：固定ナビ、Works グリッド、About、SNS（`#sns`：Instagram / X へのリンク）、列車フッター。ナビの Contact は `contact.html` へ遷移する。グリッチ演出はすべて末尾のインラインスクリプト1つにまとまっている（スクロール連動の RGB ズレ／ストライプ／テキストグリッチ、定期的なアンビエントグリッチ、`#` ナビリンクのスムーズスクロール）。
-- `<作品スラッグ>.html`（例：`jinko-haikyo-m2.html`、`e-waste-invaders.html`）— 作品個別ページ。スタイルシートとマークアップの骨格は全ページで同一のものを複製している：上部の動画埋め込み（`.work-video-top` の iframe、YouTube または Vimeo）→ `.work-title` / `.work-meta` → 日本語の `.work-description` → `.work-details` の各行（Year/Genre/Venue/Tech）→ 任意の `.work-gallery` → `.work-english` セクション → `.work-nav` → フッター。作品ページに JS はない。
+- `<作品スラッグ>.html`（例：`jinko-haikyo-m2.html`、`e-waste-invaders.html`）— 作品個別ページ。スタイルシートとマークアップの骨格は全ページで同一のものを複製している：上部の動画埋め込み（`.work-video-top` の iframe、YouTube または Vimeo。動画がない作品は `.work-video-top img` で画像を置く）→ `.work-title` / `.work-meta` → 日本語の `.work-description` → `.work-details` の各行（Year/Genre/Venue/Tech）→ 任意の `.work-gallery` → `.work-english` セクション → `.work-nav` → フッター。作品ページに JS はない。
 - `contact.html` — お問い合わせフォーム（名・姓・メール・件名・本文）。作品ページと同じ CSS 基盤。送信は FormSubmit（formsubmit.co）経由で diego.sakane@gmail.com に届く。JS が `<form action>` の URL を `/ajax/` 版に変えて fetch で送る。有効化後はアドレス部分を FormSubmit 発行のランダム文字列に置き換えてアドレスを隠す。
 - CSS はファイルごとにコピーされているため、サイト全体に効かせたいスタイル変更はすべての作品ページ（共通ルールなら `index.html` も）に反映する必要がある。
 
@@ -30,4 +30,4 @@ python -m http.server 8000
 
 ## デザイン上の制約
 
-ロトチェンコ × カッサンドル風の構成主義デザインにグリッチ演出を重ねる。各ファイルの `:root` で定義された CSS 変数を使う：ネイビー `#062C54`、アクセント `#4A9EFF`、黒 `#0A0A0A`、クリーム／白 `#F0ECE3`。フォントは Bebas Neue（ディスプレイ）、Space Mono（本文）、Noto Sans JP（日本語）で、Google Fonts から読み込む。維持すべき特徴的な要素：全ページの全画面 `.scanlines` オーバーレイ、`index.html` フッターのカッサンドル「Nord Express」風の列車シルエット（ホバーで左へ走り去る）。
+ロトチェンコ × カッサンドル風の構成主義デザインにグリッチ演出を重ねる。各ファイルの `:root` で定義された CSS 変数を使う：ネイビー `#062C54`、アクセント `#4A9EFF`、黒 `#0A0A0A`、クリーム／白 `#F0ECE3`。フォントは Bebas Neue（ディスプレイ）、Space Mono（本文）、Noto Sans JP（日本語）を基本に、ロゴ「坂根大悟」と作品ページの大見出しは DotGothic16（`--font-dot`）、トップのカードの作品タイトルと年号は Sawarabi Gothic（`--font-sawarabi`）。すべて Google Fonts から読み込む。ロゴには全ページ共通の CSS（`.rgb-glitch`）と末尾のスクリプトで、数秒おきに色収差のグリッチが入る。維持すべき特徴的な要素：全ページの全画面 `.scanlines` オーバーレイ、`index.html` フッターのカッサンドル「Nord Express」風の列車シルエット（ホバーで左へ走り去る）。

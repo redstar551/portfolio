@@ -7,7 +7,7 @@
 <meta name="description" content="映像作家・坂根大悟のポートフォリオです。">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@400;700;900&family=DotGothic16&family=Zen+Kaku+Gothic+New:wght@400;700&family=Sawarabi+Gothic&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
@@ -16,6 +16,9 @@
   --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'Space Mono', monospace;
   --font-jp: 'Noto Sans JP', sans-serif;
+  --font-dot: 'DotGothic16', sans-serif;
+  --font-zen: 'Zen Kaku Gothic New', sans-serif;
+  --font-sawarabi: 'Sawarabi Gothic', sans-serif;
 }
 html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--navy) var(--black); }
 body { background: var(--black); color: var(--white); font-family: var(--font-body); font-size: 14px; line-height: 1.6; overflow-x: hidden; cursor: crosshair; }
@@ -38,7 +41,10 @@ a:hover { color: var(--white); }
 @keyframes bg { 0%{clip-path:inset(0)}10%{clip-path:inset(20% 0 40% 0);transform:translateX(-5px)}20%{clip-path:inset(60% 0 10% 0);transform:translateX(5px)}30%,100%{clip-path:inset(0);transform:translateX(0)} }
 
 nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; mix-blend-mode: difference; }
-nav .logo { font-family: var(--font-jp); font-weight: 400; font-size: 18px; letter-spacing: 4px; color: rgba(240,236,227,0.8); }
+nav .logo { font-family: var(--font-dot); font-weight: 400; font-size: 18px; letter-spacing: 4px; color: rgba(240,236,227,0.8); }
+/* 名前の定期グリッチ：赤と水色を左右にずらす色収差 */
+@keyframes logo-rgb { 0%{text-shadow:-2px 0 rgba(255,0,70,.85),2px 0 rgba(0,220,255,.85);transform:translateX(0)} 20%{text-shadow:3px 0 rgba(255,0,70,.85),-3px 0 rgba(0,220,255,.85);transform:translateX(1px)} 40%{text-shadow:-1px 0 rgba(255,0,70,.85),1px 0 rgba(0,220,255,.85);transform:translateX(-1px)} 60%{text-shadow:2px 1px rgba(255,0,70,.85),-2px -1px rgba(0,220,255,.85);transform:translateX(0)} 80%,100%{text-shadow:none;transform:none} }
+nav .logo.rgb-glitch { display: inline-block; animation: logo-rgb 0.4s steps(1); }
 .logo-br { display: none; }
 nav .nav-links { display: flex; gap: 30px; list-style: none; }
 nav .nav-links a { font-family: var(--font-display); font-size: 16px; letter-spacing: 3px; color: var(--white); text-transform: uppercase; position: relative; }
@@ -64,8 +70,8 @@ nav .nav-links a:hover::after { width: 100%; }
 .work-card .work-bg .pattern { width: 100%; height: 100%; opacity: 0.15; }
 .work-card .work-bg .thumb { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
 .work-card:hover .work-bg .thumb { transform: scale(1.04); }
-.work-card h3 { font-family: var(--font-jp); font-weight: 700; font-size: 18px; letter-spacing: 1px; color: var(--white); }
-.work-card .work-year { font-family: var(--font-body); font-size: 11px; letter-spacing: 3px; color: var(--grey); margin-bottom: 4px; }
+.work-card h3 { font-family: var(--font-sawarabi); font-weight: 400; font-size: 18px; letter-spacing: 1px; line-height: 1.3; color: var(--white); }
+.work-card .work-year { font-family: var(--font-sawarabi); font-size: 12px; letter-spacing: 1px; color: var(--grey); line-height: 1.2; margin-bottom: 2px; }
 .work-card .work-tags { font-family: var(--font-body); font-size: 9px; letter-spacing: 2px; color: var(--cream); margin-top: 6px; text-transform: uppercase; }
 .work-card:hover h3 { animation: tf 0.1s steps(1) 3; }
 @keyframes tf { 0%{opacity:1}50%{opacity:0.6;transform:translateX(2px)}100%{opacity:1} }
@@ -154,10 +160,10 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
       <div class="work-bg"><img class="thumb" src="images/thumb-e-waste-invaders.jpg" alt="In the Glitch - モニターの彫刻作品 -" loading="lazy"></div>
       <div class="work-card-inner"><span class="work-year">2026</span><h3>In the Glitch<br>- モニター彫刻 -</h3><span class="work-tags">Game Installation</span></div>
     </a>
-    <div class="work-card reveal glitch-block">
-      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><polygon points="200,20 380,280 20,280" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.25"/></svg></div>
+    <a href="dig-shibuya.html" class="work-card reveal glitch-block">
+      <div class="work-bg"><img class="thumb" src="images/thumb-dig-shibuya.jpg" alt="DIG SHIBUYA" loading="lazy"></div>
       <div class="work-card-inner"><span class="work-year">2026</span><h3>DIG SHIBUYA</h3><span class="work-tags">Event</span></div>
-    </div>
+    </a>
     <div class="work-card reveal glitch-block">
       <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><circle cx="100" cy="150" r="100" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><circle cx="300" cy="150" r="100" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/></svg></div>
       <div class="work-card-inner"><span class="work-year">2025</span><h3>大宮曼荼羅 2025</h3><span class="work-tags">Installation</span></div>
@@ -166,34 +172,34 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
       <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><line x1="0" y1="0" x2="400" y2="200" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><line x1="100" y1="0" x2="400" y2="300" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><line x1="200" y1="0" x2="400" y2="150" stroke="#4A9EFF" stroke-width="0.5" opacity="0.15"/></svg></div>
       <div class="work-card-inner"><span class="work-year">2025</span><h3>谷根千ミッドナイト</h3><span class="work-tags">Game</span></div>
     </div>
-    <div class="work-card reveal glitch-block">
-      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><rect x="20" y="20" width="360" height="260" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><line x1="20" y1="150" x2="380" y2="150" stroke="#4A9EFF" stroke-width="0.5" opacity="0.15"/></svg></div>
+    <a href="yokohama-mijinbi.html" class="work-card reveal glitch-block">
+      <div class="work-bg"><img class="thumb" src="images/thumb-yokohama-mijinbi.jpg" alt="横浜微塵美展" loading="lazy"></div>
       <div class="work-card-inner"><span class="work-year">2024</span><h3>横浜微塵美展</h3><span class="work-tags">Installation</span></div>
-    </div>
-    <div class="work-card reveal glitch-block">
-      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><line x1="0" y1="150" x2="400" y2="150" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/><line x1="200" y1="0" x2="200" y2="300" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/></svg></div>
+    </a>
+    <a href="omiya-mandala.html" class="work-card reveal glitch-block">
+      <div class="work-bg"><img class="thumb" src="images/thumb-omiya-mandala.jpg" alt="大宮曼荼羅" loading="lazy"></div>
       <div class="work-card-inner"><span class="work-year">2023</span><h3>大宮曼荼羅</h3><span class="work-tags">CG</span></div>
-    </div>
-    <div class="work-card reveal glitch-block">
-      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><ellipse cx="200" cy="150" rx="180" ry="120" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/></svg></div>
+    </a>
+    <a href="tokyo-mandala.html" class="work-card reveal glitch-block">
+      <div class="work-bg"><img class="thumb" src="images/thumb-tokyo-mandala.jpg" alt="東京曼荼羅" loading="lazy"></div>
       <div class="work-card-inner"><span class="work-year">2022</span><h3>東京曼荼羅</h3><span class="work-tags">Installation / CG</span></div>
-    </div>
+    </a>
     <div class="work-card reveal glitch-block">
       <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><circle cx="200" cy="150" r="60" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.25"/><circle cx="200" cy="150" r="120" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.15"/></svg></div>
       <div class="work-card-inner"><span class="work-year">2021</span><h3>遊園的明滅展</h3><span class="work-tags">Installation</span></div>
     </div>
-    <div class="work-card reveal glitch-block">
-      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><line x1="50" y1="50" x2="350" y2="250" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/><line x1="350" y1="50" x2="50" y2="250" stroke="#4A9EFF" stroke-width="0.5" opacity="0.3"/></svg></div>
+    <a href="denko-sekka.html" class="work-card reveal glitch-block">
+      <div class="work-bg"><img class="thumb" src="images/thumb-denko-sekka.jpg" alt="電光石火" loading="lazy"></div>
       <div class="work-card-inner"><span class="work-year">2021</span><h3>電光石火</h3><span class="work-tags">Short Film</span></div>
-    </div>
+    </a>
     <div class="work-card reveal glitch-block">
       <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><rect x="80" y="60" width="240" height="180" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><line x1="80" y1="60" x2="320" y2="240" stroke="#4A9EFF" stroke-width="0.5" opacity="0.15"/></svg></div>
       <div class="work-card-inner"><span class="work-year">2021</span><h3>新しい世界</h3><span class="work-tags">Short Film</span></div>
     </div>
-    <div class="work-card reveal glitch-block">
-      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><circle cx="200" cy="150" r="100" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><circle cx="150" cy="120" r="40" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.15"/><circle cx="260" cy="180" r="40" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.15"/></svg></div>
+    <a href="kigurumi-butokai.html" class="work-card reveal glitch-block">
+      <div class="work-bg"><img class="thumb" src="images/thumb-kigurumi-butokai.jpg" alt="着ぐるみ舞踏会" loading="lazy"></div>
       <div class="work-card-inner"><span class="work-year">2019</span><h3>着ぐるみ舞踏会</h3><span class="work-tags">Short Film</span></div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -315,6 +321,16 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
   rv.forEach(e => ob.observe(e));
   setInterval(() => { if(Math.random()>0.85) { const ts=document.querySelectorAll('.glitch-text'), t=ts[Math.floor(Math.random()*ts.length)]; if(t){t.classList.add('glitching');setTimeout(()=>t.classList.remove('glitching'),100+Math.random()*200);} } }, 3000);
   document.querySelectorAll('nav a[href^="#"]').forEach(l => { l.addEventListener('click', e => { e.preventDefault(); document.querySelector(l.getAttribute('href'))?.scrollIntoView({behavior:'smooth',block:'start'}); }); });
+})();
+</script>
+<script>
+// 名前に数秒おきに色収差のグリッチを入れる（動きを減らす設定の閲覧者には出さない）
+(() => {
+  const logo = document.querySelector('nav .logo');
+  if (!logo || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  logo.addEventListener('animationend', () => logo.classList.remove('rgb-glitch'));
+  const fire = () => { logo.classList.remove('rgb-glitch'); void logo.offsetWidth; logo.classList.add('rgb-glitch'); setTimeout(fire, 3000 + Math.random() * 4000); };
+  setTimeout(fire, 1500);
 })();
 </script>
 </body>
