@@ -40,7 +40,7 @@ nav .back-link:hover { color: var(--accent); }
 
 .work-info { max-width: 900px; margin: 0 auto; padding: 80px 40px; }
 
-.work-title { font-family: var(--font-dot); font-weight: 400; font-size: clamp(28px, 5vw, 48px); color: var(--white); margin-bottom: 8px; }
+.work-title { font-family: var(--font-dot); font-weight: 400; font-size: clamp(28px, 5vw, 48px); color: var(--white); line-height: 1.3; margin-bottom: 0.28em; }
 .work-meta { font-family: var(--font-body); font-size: 13px; letter-spacing: 3px; color: var(--grey); text-transform: uppercase; margin-bottom: 50px; }
 
 .work-description { font-family: var(--font-jp); font-size: 16px; line-height: 2; color: var(--cream); margin-bottom: 50px; }
@@ -58,7 +58,8 @@ nav .back-link:hover { color: var(--accent); }
 .work-english { border-top: 1px solid rgba(240,236,227,0.1); padding-top: 40px; margin-bottom: 50px; }
 .work-english-heading { font-family: var(--font-display); font-size: 24px; letter-spacing: 4px; color: var(--accent); margin-bottom: 20px; }
 
-.work-nav { display: flex; justify-content: space-between; padding: 40px 0; border-top: 1px solid rgba(240,236,227,0.1); }
+.work-nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 40px 0; border-top: 1px solid rgba(240,236,227,0.1); }
+.work-nav .nav-prev { justify-self: start; } .work-nav .nav-next { justify-self: end; }
 .work-nav a { font-family: var(--font-display); font-size: 18px; letter-spacing: 3px; text-transform: uppercase; color: var(--grey); transition: color 0.3s; }
 .work-nav a:hover { color: var(--white); }
 
@@ -94,7 +95,7 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
     <p>モニターは偏光板によって映る色が変わる。その傷つけ方によって本来コントロールできないはずのグリッチをコントロールしようという試み。</p>
     <p>今回は試作としてゲームにしたもの。グリッチによってモニターを壊した後にレベルデザインしている。つまりハードの制約によってゲームの難しさが変わる設計となっている。AIでソフトウェア的なものは気軽に誰でも作れるようになってきた。<br>
 これからの未来はソフトがあってからコントローラーが選択されるのではなく、ハードによってつくられるソフトが決まる。こうした未来は近いかもしれない。</p>
-    <p style="margin-top:1.5em;">展示場所：GEIDAI GAMES 07（2026年3月、東京藝術大学 大学院映像研究科 ゲームコース展）</p>
+    <p style="margin-top:1.5em;">展示場所：GEIDAI GAMES 07（上野）</p>
   </div>
 
   <div class="work-details">
@@ -108,7 +109,7 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
     </div>
     <div class="work-detail-row">
       <span class="work-detail-label">Venue</span>
-      <span class="work-detail-value">GEIDAI GAMES 07, BankART Station, Yokohama</span>
+      <span class="work-detail-value">GEIDAI GAMES 07 (Ueno)</span>
     </div>
     <div class="work-detail-row">
       <span class="work-detail-label">Tech</span>
@@ -134,8 +135,9 @@ In the future, rather than software coming first and a controller being chosen t
   </div>
 
   <div class="work-nav">
-    <a href="jinko-haikyo-m2.html">← Prev</a>
+    <a class="nav-prev" href="jinko-haikyo-m2.html">← Prev</a>
     <a href="index.html#works">All Works</a>
+    <a class="nav-next" href="dog-shibuya.html">Next →</a>
   </div>
 
 </div>
