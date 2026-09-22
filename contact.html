@@ -37,7 +37,6 @@ nav .back-link:hover { color: var(--accent); }
 .form-group { margin-bottom: 36px; border: 0; }
 .form-legend, .form-label { display: block; font-family: var(--font-display); font-size: 22px; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
 .form-sublabel { display: block; font-family: var(--font-body); font-size: 11px; letter-spacing: 2px; color: var(--grey); text-transform: uppercase; margin-bottom: 8px; }
-.required { font-family: var(--font-body); font-size: 10px; letter-spacing: 1px; color: var(--grey); text-transform: none; margin-left: 8px; }
 .name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
 .form-input { width: 100%; background: #111; border: 1px solid rgba(240,236,227,0.2); color: var(--white); font-family: var(--font-jp); font-size: 15px; padding: 16px 18px; border-radius: 0; outline: none; transition: border-color 0.2s, background 0.2s; }
@@ -49,6 +48,8 @@ textarea.form-input { min-height: 200px; resize: vertical; line-height: 1.8; }
 .form-submit:disabled { opacity: 0.5; cursor: wait; }
 .form-status { margin-top: 24px; font-family: var(--font-jp); font-size: 14px; color: var(--cream); min-height: 1.6em; }
 .form-status.error { color: #ff6b6b; }
+.contact-note { margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(240,236,227,0.1); font-family: var(--font-jp); font-size: 14px; color: var(--cream); }
+.contact-note a { font-family: var(--font-display); font-size: 16px; letter-spacing: 2px; }
 
 footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); font-size: 11px; letter-spacing: 3px; color: rgba(240,236,227,0.4); }
 
@@ -81,34 +82,36 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
       <legend class="form-legend">Name</legend>
       <div class="name-row">
         <div>
-          <label class="form-sublabel" for="firstName">First Name<span class="required">(required)</span></label>
+          <label class="form-sublabel" for="firstName">First Name</label>
           <input class="form-input" type="text" id="firstName" name="first_name" autocomplete="given-name" required>
         </div>
         <div>
-          <label class="form-sublabel" for="lastName">Last Name<span class="required">(required)</span></label>
+          <label class="form-sublabel" for="lastName">Last Name</label>
           <input class="form-input" type="text" id="lastName" name="last_name" autocomplete="family-name" required>
         </div>
       </div>
     </fieldset>
 
     <div class="form-group">
-      <label class="form-label" for="email">Email Address<span class="required">(required)</span></label>
+      <label class="form-label" for="email">Email Address</label>
       <input class="form-input" type="email" id="email" name="email" autocomplete="email" required>
     </div>
 
     <div class="form-group">
-      <label class="form-label" for="subject">Subject<span class="required">(required)</span></label>
+      <label class="form-label" for="subject">Subject</label>
       <input class="form-input" type="text" id="subject" name="subject" required>
     </div>
 
     <div class="form-group">
-      <label class="form-label" for="message">Message<span class="required">(required)</span></label>
+      <label class="form-label" for="message">Message</label>
       <textarea class="form-input" id="message" name="message" required></textarea>
     </div>
 
     <button class="form-submit" type="submit">Submit</button>
     <p class="form-status" id="formStatus" role="status"></p>
   </form>
+
+  <p class="contact-note">SNSのDMでも連絡可能です：<a href="https://www.instagram.com/daigorere/" target="_blank">Instagram</a></p>
 </main>
 
 <footer><p>© 2026 DAIGO SAKANE</p></footer>
