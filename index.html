@@ -5,9 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daigo Sakane - Official Portfolio</title>
 <meta name="description" content="映像作家・坂根大悟のポートフォリオです。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daigo Sakane">
+<meta property="og:title" content="Daigo Sakane - Official Portfolio">
+<meta property="og:description" content="映像作家・坂根大悟のポートフォリオです。">
+<meta property="og:url" content="https://daigosakane.com/">
+<meta property="og:image" content="https://daigosakane.com/images/og/index.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@400;700;900&family=DotGothic16&family=Zen+Kaku+Gothic+New:wght@400;700&family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@400;700;900&family=DotGothic16&family=Sawarabi+Gothic&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
@@ -17,7 +26,6 @@
   --font-body: 'Space Mono', monospace;
   --font-jp: 'Noto Sans JP', sans-serif;
   --font-dot: 'DotGothic16', sans-serif;
-  --font-zen: 'Zen Kaku Gothic New', sans-serif;
   --font-sawarabi: 'Sawarabi Gothic', sans-serif;
 }
 html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--navy) var(--black); }
@@ -65,15 +73,16 @@ nav .nav-links a:hover::after { width: 100%; }
 .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; position: relative; z-index: 1; }
 .work-card { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: pointer; background: #111; display: block; color: inherit; text-decoration: none; }
 .work-card-inner { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; position: relative; z-index: 2; background: linear-gradient(0deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.15) 50%, transparent 100%); transition: background 0.4s; }
-.work-card:hover .work-card-inner { background: linear-gradient(0deg, rgba(6,44,84,0.9) 0%, rgba(6,44,84,0.3) 60%, transparent 100%); }
+a.work-card:hover .work-card-inner { background: linear-gradient(0deg, rgba(6,44,84,0.9) 0%, rgba(6,44,84,0.3) 60%, transparent 100%); }
 .work-card .work-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .work-card .work-bg .pattern { width: 100%; height: 100%; opacity: 0.15; }
 .work-card .work-bg .thumb { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
-.work-card:hover .work-bg .thumb { transform: scale(1.04); }
+a.work-card:hover .work-bg .thumb { transform: scale(1.04); }
+div.work-card { cursor: default; }
 .work-card h3 { font-family: var(--font-sawarabi); font-weight: 400; font-size: 18px; letter-spacing: 1px; line-height: 1.3; color: var(--white); }
 .work-card .work-year { font-family: var(--font-sawarabi); font-size: 12px; letter-spacing: 1px; color: var(--grey); line-height: 1.2; margin-bottom: 2px; }
 .work-card .work-tags { font-family: var(--font-body); font-size: 9px; letter-spacing: 2px; color: var(--cream); margin-top: 6px; text-transform: uppercase; }
-.work-card:hover h3 { animation: tf 0.1s steps(1) 3; }
+a.work-card:hover h3 { animation: tf 0.1s steps(1) 3; }
 @keyframes tf { 0%{opacity:1}50%{opacity:0.6;transform:translateX(2px)}100%{opacity:1} }
 
 /* ABOUT */
@@ -165,7 +174,7 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
       <div class="work-card-inner"><span class="work-year">2026</span><h3>DOG SHIBUYA</h3><span class="work-tags">Event</span></div>
     </a>
     <div class="work-card reveal glitch-block">
-      <div class="work-bg"><svg class="pattern" viewBox="0 0 400 300"><circle cx="100" cy="150" r="100" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/><circle cx="300" cy="150" r="100" fill="none" stroke="#4A9EFF" stroke-width="0.5" opacity="0.2"/></svg></div>
+      <div class="work-bg"><img class="thumb" src="images/thumb-omiya-mandala-2025.jpg" alt="大宮曼荼羅 2025" loading="lazy"></div>
       <div class="work-card-inner"><span class="work-year">2025</span><h3>大宮曼荼羅 2025</h3><span class="work-tags">Video Installation</span></div>
     </div>
     <a href="yanesen-midnight.html" class="work-card reveal glitch-block">
@@ -231,7 +240,7 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
       <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">「GEIDAI GAMES 07」東京藝術大学 上野キャンパス</span></div>
       <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">「GEIDAI GAMES 06」東京藝術大学 上野キャンパス</span></div>
       <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">「芸術未来研究場展 2025」東京藝術大学大学美術館, 上野</span></div>
-      <div class="cv-item"><span class="cv-year">2024</span><span class="cv-desc">「横浜微塵美展」Art Gallery OWL, 横浜（文化庁メディア芸術クリエイター育成支援事業）</span></div>
+      <div class="cv-item"><span class="cv-year">2024</span><span class="cv-desc">「横浜微塵美展」ギャラリー OWL, 横浜（文化庁メディア芸術クリエイター育成支援事業）</span></div>
       <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">「大宮曼荼羅」盆栽四季の家, 大宮（さいたま国際芸術祭公募プログラム）</span></div>
       <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">「六本木アートナイト・オープンコールプロジェクト」六本木ヒルズアリーナ, 六本木</span></div>
       <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">「遊園的明滅展」高架画廊, 神田</span></div>

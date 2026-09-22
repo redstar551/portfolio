@@ -26,7 +26,9 @@ python -m http.server 8000
 3. 日本語説明文末尾のクレジット段落では、展示情報の見出しを「発表：」ではなく「展示場所：」とする（例：`展示場所：東京藝術大学 元町中華街校舎（横浜）／GEIDAI GAMES 07（上野）`）。
 4. 使用中のジャンル表記：Game Installation、Installation、Video Installation（映像インスタレーション）、Video Work（映像作品）、CG、Short Film、Game、Event（`Installation / CG` のような組み合わせも可）。
 
-画像は `images/` に置き、`images/<名前>.jpg` で参照する（カード用 `thumb-<スラッグ>.jpg`、動画がない作品ページの上部用 `top-<スラッグ>.jpg`）。作品ページのギャラリーブロックは画像追加までコメントアウトされている。
+画像は `images/` に置き、`images/<名前>.jpg` で参照する（カード用 `thumb-<スラッグ>.jpg`、動画がない作品ページの上部用 `top-<スラッグ>.jpg`）。
+
+各ページの `<head>` には SNS 共有用の OGP タグ（`og:title` / `og:description` / `og:url` / `og:image`、`twitter:card`）がある。`og:image` は絶対 URL で `https://daigosakane.com/images/og/<スラッグ>.jpg`（1200×630。トップとお問い合わせは作品サムネイルを並べた `index.jpg`）、`og:url` は Cloudflare Pages が `.html` を省くため `https://daigosakane.com/<スラッグ>`。作品ページを追加したら、この画像とタグも用意する。作品ページのギャラリーブロックは画像追加までコメントアウトされている。
 
 ## デザイン上の制約
 
