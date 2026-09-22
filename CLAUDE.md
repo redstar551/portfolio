@@ -24,7 +24,7 @@ python -m http.server 8000
 1. 既存の作品ページをケバブケースの新しいファイル名でコピーし、タイトル、`<meta name="description">`、動画 URL、本文、詳細行を書き換える（README には `work-template.html` とあるが、現在リポジトリには存在しない）。
 2. `index.html` の `.works-grid` 内で、該当カードを `<a href="new-work.html" class="work-card reveal glitch-block">` に変更（または追加）する。個別ページがまだないカードは `<div>`。カードは年号＋タイトル＋ジャンルのみで、`.work-bg` に装飾用の小さなインライン SVG を持つ。並びは新しい順を維持する。
 3. 日本語説明文末尾のクレジット段落では、展示情報の見出しを「発表：」ではなく「展示場所：」とする（例：`展示場所：東京藝術大学 元町中華街校舎（横浜）／GEIDAI GAMES 07（上野）`）。
-4. 使用中のジャンル表記：Game Installation、Installation、CG、Short Film、Game、Event（`Installation / CG` のような組み合わせも可）。
+4. 使用中のジャンル表記：Game Installation、Installation、Video Installation（映像インスタレーション）、Video Work（映像作品）、CG、Short Film、Game、Event（`Installation / CG` のような組み合わせも可）。
 
 画像は `images/` に置き、`images/<名前>.jpg` で参照する。このフォルダはまだ存在せず、既存のギャラリーブロックは画像追加までコメントアウトされている。
 
