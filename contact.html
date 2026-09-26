@@ -36,8 +36,9 @@ a:hover { color: var(--white); }
 .lang-en { display: none; }
 html[lang="en"] .lang-ja { display: none; }
 html[lang="en"] .lang-en { display: revert; }
-.lang-toggle { font-family: var(--font-display), var(--font-jp); font-size: 15px; letter-spacing: 2px; color: var(--white); background: transparent; border: 1px solid rgba(240,236,227,0.4); padding: 3px 10px; cursor: pointer; text-transform: uppercase; transition: border-color 0.3s, color 0.3s; }
+.lang-toggle { font-family: var(--font-display), var(--font-jp); font-size: 15px; letter-spacing: 2px; color: rgba(240,236,227,0.45); background: transparent; border: 1px solid rgba(240,236,227,0.22); padding: 3px 10px; cursor: pointer; text-transform: uppercase; transition: border-color 0.3s, color 0.3s; }
 .lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.lang-toggle:focus-visible { outline: 1px solid var(--accent); }
 .nav-right { display: flex; align-items: center; gap: 20px; }
 
 .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px); opacity: 0.5; }
@@ -47,24 +48,23 @@ nav .logo { font-family: var(--font-dot); font-weight: 400; font-size: 18px; let
 /* 名前の定期グリッチ：赤と水色を左右にずらす色収差 */
 @keyframes logo-rgb { 0%{text-shadow:-2px 0 rgba(255,0,70,.85),2px 0 rgba(0,220,255,.85);transform:translateX(0)} 20%{text-shadow:3px 0 rgba(255,0,70,.85),-3px 0 rgba(0,220,255,.85);transform:translateX(1px)} 40%{text-shadow:-1px 0 rgba(255,0,70,.85),1px 0 rgba(0,220,255,.85);transform:translateX(-1px)} 60%{text-shadow:2px 1px rgba(255,0,70,.85),-2px -1px rgba(0,220,255,.85);transform:translateX(0)} 80%,100%{text-shadow:none;transform:none} }
 nav .logo.rgb-glitch { display: inline-block; animation: logo-rgb 0.4s steps(1); }
-nav .back-link { font-family: var(--font-display); font-size: 16px; letter-spacing: 3px; color: var(--white); text-transform: uppercase; }
+nav .back-link { font-family: var(--font-display); font-size: 16px; letter-spacing: 3px; color: rgba(240,236,227,0.45); text-transform: uppercase; transition: color 0.3s; }
 nav .back-link:hover { color: var(--accent); }
 
 .contact-page { max-width: 900px; margin: 0 auto; padding: 60px 40px 100px; }
 .contact-title { font-family: var(--font-display); font-size: clamp(48px, 10vw, 120px); letter-spacing: 6px; color: var(--white); text-transform: uppercase; line-height: 1; margin-bottom: 60px; position: relative; display: inline-block; }
-.contact-title::before { content: ''; position: absolute; left: -20px; top: 50%; width: 8px; height: 60%; background: var(--accent); transform: translateY(-50%); }
 
-.form-group { margin-bottom: 36px; border: 0; }
-.form-legend, .form-label { display: block; font-family: var(--font-display); font-size: 22px; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
-.form-sublabel { display: block; font-family: var(--font-body); font-size: 11px; letter-spacing: 2px; color: var(--grey); text-transform: uppercase; margin-bottom: 8px; }
-.name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { margin-bottom: 30px; border: 0; }
+.form-legend, .form-label { display: block; font-family: var(--font-body); font-size: 12px; letter-spacing: 1px; color: var(--grey); margin-bottom: 8px; }
+.form-sublabel { display: block; font-family: var(--font-body); font-size: 12px; letter-spacing: 1px; color: var(--grey); margin-bottom: 8px; }
+.name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
 
-.form-input { width: 100%; background: #111; border: 1px solid rgba(240,236,227,0.2); color: var(--white); font-family: var(--font-jp); font-size: 15px; padding: 16px 18px; border-radius: 0; outline: none; transition: border-color 0.2s, background 0.2s; }
-.form-input:focus { border-color: var(--accent); background: #0d1622; }
-textarea.form-input { min-height: 200px; resize: vertical; line-height: 1.8; }
+.form-input { width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgba(240,236,227,0.25); color: var(--white); font-family: var(--font-jp); font-size: 15px; padding: 10px 0; border-radius: 0; outline: none; transition: border-color 0.25s; }
+.form-input:focus { border-bottom-color: var(--accent); }
+textarea.form-input { min-height: 160px; resize: vertical; line-height: 1.9; }
 
-.form-submit { font-family: var(--font-display); font-size: 18px; letter-spacing: 4px; text-transform: uppercase; padding: 14px 48px; border: 2px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; transition: all 0.3s; }
-.form-submit:hover { background: var(--accent); color: var(--black); }
+.form-submit { font-family: var(--font-display); font-size: 16px; letter-spacing: 3px; text-transform: uppercase; padding: 11px 34px; border: 1px solid rgba(240,236,227,0.35); background: transparent; color: rgba(240,236,227,0.75); cursor: pointer; transition: border-color 0.3s, color 0.3s; margin-top: 18px; }
+.form-submit:hover { border-color: var(--accent); color: var(--accent); }
 .form-submit:disabled { opacity: 0.5; cursor: wait; }
 .form-status { margin-top: 24px; font-family: var(--font-jp); font-size: 14px; color: var(--cream); min-height: 1.6em; }
 .form-status.error { color: #ff6b6b; }
@@ -77,7 +77,6 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
   nav { padding: 16px 20px; }
   .contact-page { padding: 40px 20px 80px; }
   .contact-title { margin-bottom: 40px; }
-  .contact-title::before { left: -12px; width: 5px; }
   .name-row { grid-template-columns: 1fr; }
 }
 </style>
@@ -104,7 +103,6 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
     <input type="hidden" name="_template" value="table">
     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
     <fieldset class="form-group">
-      <legend class="form-legend">Name</legend>
       <div class="name-row">
         <div>
           <label class="form-sublabel" for="firstName">First Name</label>

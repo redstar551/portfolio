@@ -37,8 +37,9 @@ a:hover { color: var(--white); }
 .lang-en { display: none; }
 html[lang="en"] .lang-ja { display: none; }
 html[lang="en"] .lang-en { display: revert; }
-.lang-toggle { font-family: var(--font-display), var(--font-jp); font-size: 15px; letter-spacing: 2px; color: var(--white); background: transparent; border: 1px solid rgba(240,236,227,0.4); padding: 3px 10px; cursor: pointer; text-transform: uppercase; transition: border-color 0.3s, color 0.3s; }
+.lang-toggle { font-family: var(--font-display), var(--font-jp); font-size: 15px; letter-spacing: 2px; color: rgba(240,236,227,0.45); background: transparent; border: 1px solid rgba(240,236,227,0.22); padding: 3px 10px; cursor: pointer; text-transform: uppercase; transition: border-color 0.3s, color 0.3s; }
 .lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.lang-toggle:focus-visible { outline: 1px solid var(--accent); }
 .nav-right { display: flex; align-items: center; gap: 20px; }
 
 .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px); opacity: 0.5; }
@@ -62,12 +63,13 @@ nav .logo { font-family: var(--font-dot); font-weight: 400; font-size: 18px; let
 nav .logo.rgb-glitch { display: inline-block; animation: logo-rgb 0.4s steps(1); }
 .logo-br { display: none; }
 nav .nav-links { display: flex; gap: 30px; list-style: none; }
-nav .nav-links a { font-family: var(--font-display); font-size: 16px; letter-spacing: 3px; color: var(--white); text-transform: uppercase; position: relative; }
+nav .nav-links a { font-family: var(--font-display); font-size: 16px; letter-spacing: 3px; color: rgba(240,236,227,0.45); text-transform: uppercase; position: relative; transition: color 0.3s; }
+nav .nav-links a:hover { color: var(--white); }
 nav .nav-links a::after { content:''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s; }
 nav .nav-links a:hover::after { width: 100%; }
 
 /* WORKS — TOP */
-#works { padding: 100px 65px 80px; position: relative; overflow: hidden; min-height: 100vh; }
+#works { padding: 100px 9.5% 80px; position: relative; overflow: hidden; min-height: 100vh; }
 #works::before {
   content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
   background:
@@ -77,10 +79,15 @@ nav .nav-links a:hover::after { width: 100%; }
 #works::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, transparent, rgba(74,158,255,0.15), rgba(150,0,255,0.1), transparent); z-index: 0; animation: sd 8s linear infinite; pointer-events: none; }
 @keyframes sd { 0%{top:0}100%{top:100%} }
 
-.works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; position: relative; z-index: 1; }
+/* 障子の桟のように、カードのすき間と外枠を細い線で見せる（暗め） */
+.works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; position: relative; z-index: 1; padding: 5px; max-width: 1160px; margin: 0 auto;
+  /* 左上から光が当たる桟：明るい面と影の面をグラデーションでつくる */
+  background-image: linear-gradient(135deg, rgba(240,236,227,0.26) 0%, rgba(232,224,208,0.16) 45%, rgba(120,114,104,0.14) 100%);
+  box-shadow: 0 0 0 1px rgba(10,10,10,0.9), 0 16px 40px rgba(0,0,0,0.65); }
 /* 広い画面では4列にしてカードを小さめに */
 @media (min-width: 1100px) { .works-grid { grid-template-columns: repeat(4, 1fr); } }
-.work-card { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: pointer; background: #111; display: block; color: inherit; text-decoration: none; }
+.work-card { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: pointer; background: #111; display: block; color: inherit; text-decoration: none;
+  box-shadow: inset 3px 3px 7px rgba(0,0,0,0.9), inset -2px -2px 5px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(10,10,10,0.9); }
 .work-card-inner { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; position: relative; z-index: 2; background: linear-gradient(0deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.15) 50%, transparent 100%); transition: background 0.4s; }
 a.work-card:hover .work-card-inner { background: linear-gradient(0deg, rgba(6,44,84,0.9) 0%, rgba(6,44,84,0.3) 60%, transparent 100%); }
 .work-card .work-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
@@ -106,10 +113,10 @@ html[lang="en"] .about-bio .about-list li::before { content: "— "; }
 .about-photo { margin-top: 40px; max-width: 400px; }
 .about-photo img { width: 100%; height: auto; display: block; filter: contrast(1.05) brightness(0.95); }
 .about-right { padding-top: 80px; }
-.cv-block { margin-bottom: 40px; }
-.cv-block h4 { font-family: var(--font-display); font-size: 22px; letter-spacing: 4px; color: var(--accent); margin-bottom: 16px; text-transform: uppercase; }
-.cv-item { display: grid; grid-template-columns: 80px 1fr; gap: 16px; margin-bottom: 10px; font-size: 13px; }
-.cv-year { font-family: var(--font-body); color: var(--grey); }
+.cv-block { margin-bottom: 44px; }
+.cv-block h4 { font-family: var(--font-display), var(--font-jp); font-size: 15px; letter-spacing: 2px; color: var(--accent); margin-bottom: 5px; text-transform: uppercase; }
+.cv-item { display: grid; grid-template-columns: 52px 1fr; gap: 14px; margin-bottom: 7px; font-size: 13px; line-height: 1.7; }
+.cv-year { font-family: var(--font-jp); color: var(--grey); letter-spacing: 0; }
 .cv-desc { font-family: var(--font-jp); color: var(--cream); }
 
 /* CONTACT */
@@ -149,7 +156,7 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
 @media (max-width: 768px) {
   nav { padding: 16px 20px; } nav .nav-links { gap: 16px; } nav .nav-links a { font-size: 12px; letter-spacing: 2px; }
   .logo-br { display: inline; } nav .logo { font-size: 16px; line-height: 1.3; }
-  #works { padding: 80px 16px 40px; } .works-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+  #works { padding: 80px 7% 40px; } .works-grid { grid-template-columns: 1fr 1fr; gap: 4px; }
   .work-card h3 { font-size: 14px; } .work-card-inner { padding: 14px; }
   #about { grid-template-columns: 1fr; gap: 40px; padding: 80px 20px; } .about-right { padding-top: 0; }
   .train-wrapper { width: 95vw; transform: rotate(-4deg); }
@@ -262,71 +269,71 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
     </div>
   </div>
   <div class="about-right reveal lang-ja">
-    <div class="cv-block"><h4>Biography</h4>
+    <div class="cv-block"><h4>個展</h4>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">「大宮曼荼羅 2025」盆栽四季の家、埼玉</span></div>
+    </div>
+    <div class="cv-block"><h4>グループ展</h4>
+      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">「DIG SHIBUYA 2026」渋谷ハチ公前広場、東京</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">「GEIDAI GAMES 07」東京藝術大学上野キャンパス、東京</span></div>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">「GEIDAI GAMES 06」東京藝術大学上野キャンパス、東京</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">「芸術未来研究場展 2025」東京藝術大学大学美術館、東京</span></div>
+      <div class="cv-item"><span class="cv-year">2024</span><span class="cv-desc">「横浜微塵美展」ギャラリー OWL、神奈川（文化庁メディア芸術クリエイター育成支援事業）</span></div>
+      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">「大宮曼荼羅」盆栽四季の家、埼玉（さいたま国際芸術祭公募プログラム）</span></div>
+      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">「六本木アートナイト・オープンコールプロジェクト」六本木ヒルズアリーナ、東京</span></div>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">「遊園的明滅展」高架画廊、東京</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">「流展」シェアプレイス調布多摩川、東京 ／「再展」DHU八王子キャンパス、東京</span></div>
+    </div>
+    <div class="cv-block"><h4>上映</h4>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">ゆうばり国際ファンタスティック映画祭 短編入選作品上映</span></div>
+    </div>
+    <div class="cv-block"><h4>受賞・助成</h4>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">さいたま文化芸術都市創造助成金2025（大宮曼荼羅 2025）</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">東京藝大「I LOVE YOU」プロジェクト 2025 採択</span></div>
+      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">文化庁メディア芸術クリエイター育成支援事業 選出</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">さいたま国際芸術祭 公募作品選出</span></div>
+      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">六本木アートナイト・オープンコールプロジェクト 入選</span></div>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">カルト国際映画祭 入選（監督・編集・脚本・撮影）</span></div>
+      <div class="cv-item"><span class="cv-year">2015</span><span class="cv-desc">銚子さんまマラソン 10km 優勝 / 箱根駅伝予選会 出場</span></div>
+    </div>
+    <div class="cv-block"><h4>経歴</h4>
       <div class="cv-item"><span class="cv-year">1995</span><span class="cv-desc">大宮市出身</span></div>
       <div class="cv-item"><span class="cv-year">2013</span><span class="cv-desc">川越東高校 卒業</span></div>
       <div class="cv-item"><span class="cv-year">2017</span><span class="cv-desc">学習院大学 文学部史学科 卒業</span></div>
       <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">東京藝術大学大学院 映像研究科 メディア映像専攻 修了</span></div>
     </div>
-    <div class="cv-block"><h4>Solo Exhibition</h4>
-      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">「大宮曼荼羅 2025」盆栽四季の家, 大宮</span></div>
-    </div>
-    <div class="cv-block"><h4>Group Exhibition</h4>
-      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">「DIG SHIBUYA 2026」渋谷ハチ公前広場, 渋谷</span></div>
-      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">「GEIDAI GAMES 07」東京藝術大学 上野キャンパス</span></div>
-      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">「GEIDAI GAMES 06」東京藝術大学 上野キャンパス</span></div>
-      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">「芸術未来研究場展 2025」東京藝術大学大学美術館, 上野</span></div>
-      <div class="cv-item"><span class="cv-year">2024</span><span class="cv-desc">「横浜微塵美展」ギャラリー OWL, 横浜（文化庁メディア芸術クリエイター育成支援事業）</span></div>
-      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">「大宮曼荼羅」盆栽四季の家, 大宮（さいたま国際芸術祭公募プログラム）</span></div>
-      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">「六本木アートナイト・オープンコールプロジェクト」六本木ヒルズアリーナ, 六本木</span></div>
-      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">「遊園的明滅展」高架画廊, 神田</span></div>
-      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">「流展」シェアプレイス調布多摩川 /「再展」DHU八王子キャンパス</span></div>
-    </div>
-    <div class="cv-block"><h4>Screening</h4>
-      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">ゆうばり国際ファンタスティック映画祭 短編入選作品上映</span></div>
-    </div>
-    <div class="cv-block"><h4>Grants & Awards</h4>
-      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">さいたま文化芸術都市創造助成金2025（大宮曼荼羅 2025）</span></div>
-      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">東京藝大「I LOVE YOU」プロジェクト 2025 採択</span></div>
-      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">文化庁メディア芸術クリエイター育成支援事業 選出</span></div>
-      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">さいたま国際芸術祭 公募作品選出</span></div>
-      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">六本木アートナイト・オープンコールプロジェクト 入選</span></div>
-      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">カルト国際映画祭 入選（監督・編集・脚本・撮影）</span></div>
-      <div class="cv-item"><span class="cv-year">2015</span><span class="cv-desc">銚子さんまマラソン 10km 優勝 / 箱根駅伝予選会 出場</span></div>
-    </div>
   </div>
   <div class="about-right reveal lang-en">
-    <div class="cv-block"><h4>Biography</h4>
-      <div class="cv-item"><span class="cv-year">1995</span><span class="cv-desc">Born in Omiya, Saitama</span></div>
-      <div class="cv-item"><span class="cv-year">2013</span><span class="cv-desc">Graduated from Kawagoe Higashi High School</span></div>
-      <div class="cv-item"><span class="cv-year">2017</span><span class="cv-desc">BA in History, Faculty of Letters, Gakushuin University</span></div>
-      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">MFA in Media Video, Graduate School of Film and New Media, Tokyo University of the Arts</span></div>
-    </div>
     <div class="cv-block"><h4>Solo Exhibition</h4>
-      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">"Omiya Mandala 2025," Bonsai Shiki no Ie, Omiya</span></div>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">"Omiya Mandala 2025,"Bonsai Shiki no Ie, Omiya</span></div>
     </div>
     <div class="cv-block"><h4>Group Exhibition</h4>
-      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">"DIG SHIBUYA 2026," Hachiko Square, Shibuya</span></div>
-      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">"GEIDAI GAMES 07," Tokyo University of the Arts, Ueno Campus</span></div>
-      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">"GEIDAI GAMES 06," Tokyo University of the Arts, Ueno Campus</span></div>
-      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">"Art Future Lab Exhibition 2025," The University Art Museum, Tokyo University of the Arts, Ueno</span></div>
-      <div class="cv-item"><span class="cv-year">2024</span><span class="cv-desc">"Yokohama Mijinbi Exhibition," Gallery OWL, Yokohama (Agency for Cultural Affairs Media Arts Creators Development Support Program)</span></div>
-      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">"Omiya Mandala," Bonsai Shiki no Ie, Omiya (Saitama International Art Festival open-call program)</span></div>
-      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">"Roppongi Art Night Open Call Project," Roppongi Hills Arena, Roppongi</span></div>
-      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">"Yuenteki Meimetsu Exhibition," Kouka Garou, Kanda</span></div>
-      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">"Ruten," Share Place Chofu Tamagawa / "Saiten," DHU Hachioji Campus</span></div>
+      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">"DIG SHIBUYA 2026,"Hachiko Square, Shibuya</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">"GEIDAI GAMES 07,"Tokyo University of the Arts, Ueno Campus</span></div>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">"GEIDAI GAMES 06,"Tokyo University of the Arts, Ueno Campus</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">"Art Future Lab Exhibition 2025,"The University Art Museum, Tokyo University of the Arts, Ueno</span></div>
+      <div class="cv-item"><span class="cv-year">2024</span><span class="cv-desc">"Yokohama Mijinbi Exhibition,"Gallery OWL, Yokohama (Agency for Cultural Affairs Media Arts Creators Development Support Program)</span></div>
+      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">"Omiya Mandala,"Bonsai Shiki no Ie, Omiya (Saitama International Art Festival open-call program)</span></div>
+      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">"Roppongi Art Night Open Call Project,"Roppongi Hills Arena, Roppongi</span></div>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">"Yuenteki Meimetsu Exhibition,"Kouka Garou, Kanda</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">"Ruten,"Share Place Chofu Tamagawa / "Saiten," DHU Hachioji Campus</span></div>
     </div>
     <div class="cv-block"><h4>Screening</h4>
       <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">Yubari International Fantastic Film Festival, selected short film screening</span></div>
     </div>
     <div class="cv-block"><h4>Grants &amp; Awards</h4>
-      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">Saitama Culture and Arts City Creation Grant 2025 (Omiya Mandala 2025)</span></div>
-      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">Selected for the Tokyo University of the Arts "I LOVE YOU" Project 2025</span></div>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">Saitama Culture and Arts City Creation Grant 2025(Omiya Mandala 2025)</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">Selected for the Tokyo University of the Arts "I LOVE YOU" Project 2025</span></div>
       <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">Selected for the Agency for Cultural Affairs Media Arts Creators Development Support Program</span></div>
-      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">Selected for the Saitama International Art Festival open call</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">Selected for the Saitama International Art Festival open call</span></div>
       <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">Selected for the Roppongi Art Night Open Call Project</span></div>
-      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">Selected at the Cult International Film Festival (director, editor, writer, cinematographer)</span></div>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">Selected at the Cult International Film Festival(director, editor, writer, cinematographer)</span></div>
       <div class="cv-item"><span class="cv-year">2015</span><span class="cv-desc">1st place, Choshi Sanma Marathon 10 km / Competed in the Hakone Ekiden qualifier</span></div>
+    </div>
+    <div class="cv-block"><h4>Biography</h4>
+      <div class="cv-item"><span class="cv-year">1995</span><span class="cv-desc">Born in Omiya, Saitama</span></div>
+      <div class="cv-item"><span class="cv-year">2013</span><span class="cv-desc">Graduated from Kawagoe Higashi High School</span></div>
+      <div class="cv-item"><span class="cv-year">2017</span><span class="cv-desc">BA in History, Faculty of Letters, Gakushuin University</span></div>
+      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">MFA in Media Video, Graduate School of Film and New Media, Tokyo University of the Arts</span></div>
     </div>
   </div>
 </section>
