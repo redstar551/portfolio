@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-title-en="Yokohama Mijinbi Exhibition — Daigo Sakane">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,6 +32,13 @@ body { background: var(--black); color: var(--white); font-family: var(--font-bo
 ::selection { background: var(--navy); color: var(--white); }
 a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
 a:hover { color: var(--white); }
+/* 言語切り替え：<html lang> に応じて日本語版と英語版を出し分ける */
+.lang-en { display: none; }
+html[lang="en"] .lang-ja { display: none; }
+html[lang="en"] .lang-en { display: revert; }
+.lang-toggle { font-family: var(--font-display), var(--font-jp); font-size: 15px; letter-spacing: 2px; color: var(--white); background: transparent; border: 1px solid rgba(240,236,227,0.4); padding: 3px 10px; cursor: pointer; text-transform: uppercase; transition: border-color 0.3s, color 0.3s; }
+.lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
 
 .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px); opacity: 0.5; }
 
@@ -63,8 +70,6 @@ nav .back-link:hover { color: var(--accent); }
 .work-gallery img { width: 100%; height: auto; display: block; }
 .work-gallery-full { grid-column: 1 / -1; }
 
-.work-english { border-top: 1px solid rgba(240,236,227,0.1); padding-top: 40px; margin-bottom: 50px; }
-.work-english-heading { font-family: var(--font-display); font-size: 24px; letter-spacing: 4px; color: var(--accent); margin-bottom: 20px; }
 
 .work-nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 40px 0; border-top: 1px solid rgba(240,236,227,0.1); }
 .work-nav .nav-prev { justify-self: start; } .work-nav .nav-next { justify-self: end; }
@@ -80,13 +85,17 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
   .work-detail-row { grid-template-columns: 1fr; gap: 4px; }
 }
 </style>
+<script>try{if(localStorage.getItem("lang")==="en")document.documentElement.lang="en";}catch(e){}</script>
 </head>
 <body>
 <div class="scanlines"></div>
 
 <nav>
   <a href="index.html" class="logo">坂根大悟</a>
-  <a href="index.html#works" class="back-link">← Works</a>
+  <div class="nav-right">
+    <a href="index.html#works" class="back-link">← Works</a>
+    <button class="lang-toggle" type="button" aria-label="Switch language">EN</button>
+  </div>
 </nav>
 
 <div class="work-video-top">
@@ -98,7 +107,7 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
   <h1 class="work-title">横浜微塵美展</h1>
   <p class="work-meta">2024 — Installation</p>
 
-  <div class="work-description">
+  <div class="work-description lang-ja">
     <p>普段、目にするホコリやモヤを通して、部屋への認識の拡張を試みる科学装置インスタレーション。本展は2部屋で構成される。</p>
     <p>1部屋目ではホコリをアクリルボックスで鑑賞しながら、展示空間の壁面は宇宙の星の輝きに彩られる。2部屋目では空気の密度差によって可視化されるモヤを、部屋のコラージュ映像の中で鑑賞する。</p>
     <p>つまりホコリ（汚い）×星（美しい）と、モヤ（未可視）×部屋（可視）という相反するものの共存によって、鑑賞者の部屋認識の拡張を試みる。</p>
@@ -107,6 +116,14 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
     <p style="margin-top:1.5em;">展示場所：ギャラリー OWL（横浜石川町）<br>
 共同開催：市川しょうこ（化学者）<br>
 支援：令和5年度 文化庁メディア芸術クリエイター育成支援事業</p>
+  </div>
+  <div class="work-description lang-en">
+    <p>Exhibited at Gallery OWL (Ishikawacho, Yokohama), 2024. Co-organized with chemist Shoko Ichikawa. Supported by the Agency for Cultural Affairs' Media Arts Creators Development Support Program (FY2023).</p>
+    <p>A scientific-apparatus installation that seeks to expand our perception of the room through the dust and haze we see every day. The exhibition consists of two rooms.</p>
+    <p>In the first room, visitors view dust inside an acrylic box while the walls are lit with the glitter of stars. In the second, they view haze, made visible by differences in air density, within a collage video of a room.</p>
+    <p>By bringing together opposites (dust as dirty and stars as beautiful, haze as invisible and the room as visible), the work attempts to expand the viewer's perception of the room.</p>
+    <p>B1F: A floor where dust glitters in the light through the Tyndall effect, alongside projected images of outer space. The twinkling of stars and the glitter of dust can be explained by the same scientific phenomenon, yet depending on context one is called beautiful and the other dirty. An interactive system that recognizes visitors and turns them into particles creates an experience in which the boundaries between dust, stars and the visitors themselves blur.</p>
+    <p>1F: The schlieren effect, which makes haze visible through differences in air density, is projected together with a collage video imagining the inside of a room. When visitors hold a hand over the work, normally invisible haze rises from their palm and is projected onto the wall. The always-visible room and the unseen haze mingle in the field of view.</p>
   </div>
 
   <div class="work-details">
@@ -128,18 +145,6 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
     </div>
   </div>
 
-  <div class="work-english">
-    <h2 class="work-english-heading">EN</h2>
-    <div class="work-description">
-      <p>Exhibited at Gallery OWL (Ishikawacho, Yokohama), 2024. Co-organized with chemist Shoko Ichikawa. Supported by the Agency for Cultural Affairs' Media Arts Creators Development Support Program (FY2023).</p>
-      <p>A scientific-apparatus installation that seeks to expand our perception of the room through the dust and haze we see every day. The exhibition consists of two rooms.</p>
-      <p>In the first room, visitors view dust inside an acrylic box while the walls are lit with the glitter of stars. In the second, they view haze, made visible by differences in air density, within a collage video of a room.</p>
-      <p>By bringing together opposites (dust as dirty and stars as beautiful, haze as invisible and the room as visible), the work attempts to expand the viewer's perception of the room.</p>
-      <p>B1F: A floor where dust glitters in the light through the Tyndall effect, alongside projected images of outer space. The twinkling of stars and the glitter of dust can be explained by the same scientific phenomenon, yet depending on context one is called beautiful and the other dirty. An interactive system that recognizes visitors and turns them into particles creates an experience in which the boundaries between dust, stars and the visitors themselves blur.</p>
-      <p>1F: The schlieren effect, which makes haze visible through differences in air density, is projected together with a collage video imagining the inside of a room. When visitors hold a hand over the work, normally invisible haze rises from their palm and is projected onto the wall. The always-visible room and the unseen haze mingle in the field of view.</p>
-    </div>
-  </div>
-
   <div class="work-nav">
     <a class="nav-prev" href="yanesen-midnight.html">← Prev</a>
     <a href="index.html#works">All Works</a>
@@ -157,6 +162,21 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
   logo.addEventListener('animationend', () => logo.classList.remove('rgb-glitch'));
   const fire = () => { logo.classList.remove('rgb-glitch'); void logo.offsetWidth; logo.classList.add('rgb-glitch'); setTimeout(fire, 3000 + Math.random() * 4000); };
   setTimeout(fire, 1500);
+})();
+</script>
+<script>
+// 言語切り替え：選んだ言語を記憶し、<html lang> を切り替える
+(() => {
+  const btn = document.querySelector('.lang-toggle');
+  if (!btn) return;
+  const titleJa = document.title, titleEn = document.documentElement.dataset.titleEn || titleJa;
+  const apply = l => { document.documentElement.lang = l; document.title = l === 'en' ? titleEn : titleJa; btn.textContent = l === 'en' ? '日本語' : 'EN'; };
+  apply(document.documentElement.lang === 'en' ? 'en' : 'ja');
+  btn.addEventListener('click', () => {
+    const l = document.documentElement.lang === 'en' ? 'ja' : 'en';
+    apply(l);
+    try { localStorage.setItem('lang', l); } catch (e) {}
+  });
 })();
 </script>
 </body>

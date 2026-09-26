@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-title-en="Tokyo Mandala — Daigo Sakane">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,6 +32,13 @@ body { background: var(--black); color: var(--white); font-family: var(--font-bo
 ::selection { background: var(--navy); color: var(--white); }
 a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
 a:hover { color: var(--white); }
+/* 言語切り替え：<html lang> に応じて日本語版と英語版を出し分ける */
+.lang-en { display: none; }
+html[lang="en"] .lang-ja { display: none; }
+html[lang="en"] .lang-en { display: revert; }
+.lang-toggle { font-family: var(--font-display), var(--font-jp); font-size: 15px; letter-spacing: 2px; color: var(--white); background: transparent; border: 1px solid rgba(240,236,227,0.4); padding: 3px 10px; cursor: pointer; text-transform: uppercase; transition: border-color 0.3s, color 0.3s; }
+.lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
 
 .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px); opacity: 0.5; }
 
@@ -63,8 +70,6 @@ nav .back-link:hover { color: var(--accent); }
 .work-gallery img { width: 100%; height: auto; display: block; }
 .work-gallery-full { grid-column: 1 / -1; }
 
-.work-english { border-top: 1px solid rgba(240,236,227,0.1); padding-top: 40px; margin-bottom: 50px; }
-.work-english-heading { font-family: var(--font-display); font-size: 24px; letter-spacing: 4px; color: var(--accent); margin-bottom: 20px; }
 
 .work-nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 40px 0; border-top: 1px solid rgba(240,236,227,0.1); }
 .work-nav .nav-prev { justify-self: start; } .work-nav .nav-next { justify-self: end; }
@@ -80,13 +85,17 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
   .work-detail-row { grid-template-columns: 1fr; gap: 4px; }
 }
 </style>
+<script>try{if(localStorage.getItem("lang")==="en")document.documentElement.lang="en";}catch(e){}</script>
 </head>
 <body>
 <div class="scanlines"></div>
 
 <nav>
   <a href="index.html" class="logo">坂根大悟</a>
-  <a href="index.html#works" class="back-link">← Works</a>
+  <div class="nav-right">
+    <a href="index.html#works" class="back-link">← Works</a>
+    <button class="lang-toggle" type="button" aria-label="Switch language">EN</button>
+  </div>
 </nav>
 
 <div class="work-video-top">
@@ -98,13 +107,19 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
   <h1 class="work-title">東京曼荼羅</h1>
   <p class="work-meta">2021 — Video Work</p>
 
-  <div class="work-description">
+  <div class="work-description lang-ja">
     <p>この作品は陰陽太極図的メディア空間を追い求める作者の脳内で再構成された東京を表現した。東京は常に破壊と創造が高速で行われている街だ。こうした相反するものを同居させるためにコラージュとサイケ表現を用いた。</p>
     <p>コラージュ表現は現実世界で同居しないものを同居させることができる。歌舞伎町の空に猫が浮き、それも花火のように散り、またすぐ別の花が咲く。そのコラージュにサイケデリック表現を施し、境界をあいまいにした。恐らく東京は「相反の共存」を日本で最も分かりやすく体現した街だろうと思う。</p>
     <p>六本木で開催された六本木アートナイト2022のオープンコールプロジェクトにて上映。自分の作品を上映中、子供たちが楽しそうに飛び跳ねていたのが印象的だった。</p>
     <p style="margin-top:1.5em;">展示場所：六本木ヒルズアリーナ（六本木）<br>
 六本木アートナイト2022 オープンコールプロジェクト選出<br>
 3m×3mのLEDモニターに出力／2分40秒</p>
+  </div>
+  <div class="work-description lang-en">
+    <p>Screened at Roppongi Hills Arena (Roppongi), 2022, as part of the Roppongi Art Night 2022 open-call project. Output on a 3 m × 3 m LED screen, 2 min 40 sec.</p>
+    <p>This work depicts Tokyo as reconstructed in the mind of an artist who pursues a media space like the yin-yang taijitu. Tokyo is a city where destruction and creation happen constantly and at high speed. To let such opposites coexist, the work uses collage and psychedelic expression.</p>
+    <p>Collage can bring together things that never coexist in the real world. A cat floats in the sky over Kabukicho, scatters like fireworks, and another flower soon blooms. Psychedelic effects applied to the collage blur the boundaries. Tokyo is perhaps the city in Japan that most clearly embodies the coexistence of opposites.</p>
+    <p>Screened at the Roppongi Art Night 2022 open-call project in Roppongi. During the screening, children jumping around happily in front of the work left a lasting impression.</p>
   </div>
 
   <div class="work-details">
@@ -126,16 +141,6 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
     </div>
   </div>
 
-  <div class="work-english">
-    <h2 class="work-english-heading">EN</h2>
-    <div class="work-description">
-      <p>Screened at Roppongi Hills Arena (Roppongi), 2022, as part of the Roppongi Art Night 2022 open-call project. Output on a 3 m × 3 m LED screen, 2 min 40 sec.</p>
-      <p>This work depicts Tokyo as reconstructed in the mind of an artist who pursues a media space like the yin-yang taijitu. Tokyo is a city where destruction and creation happen constantly and at high speed. To let such opposites coexist, the work uses collage and psychedelic expression.</p>
-      <p>Collage can bring together things that never coexist in the real world. A cat floats in the sky over Kabukicho, scatters like fireworks, and another flower soon blooms. Psychedelic effects applied to the collage blur the boundaries. Tokyo is perhaps the city in Japan that most clearly embodies the coexistence of opposites.</p>
-      <p>Screened at the Roppongi Art Night 2022 open-call project in Roppongi. During the screening, children jumping around happily in front of the work left a lasting impression.</p>
-    </div>
-  </div>
-
   <div class="work-nav">
     <a class="nav-prev" href="omiya-mandala.html">← Prev</a>
     <a href="index.html#works">All Works</a>
@@ -153,6 +158,21 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
   logo.addEventListener('animationend', () => logo.classList.remove('rgb-glitch'));
   const fire = () => { logo.classList.remove('rgb-glitch'); void logo.offsetWidth; logo.classList.add('rgb-glitch'); setTimeout(fire, 3000 + Math.random() * 4000); };
   setTimeout(fire, 1500);
+})();
+</script>
+<script>
+// 言語切り替え：選んだ言語を記憶し、<html lang> を切り替える
+(() => {
+  const btn = document.querySelector('.lang-toggle');
+  if (!btn) return;
+  const titleJa = document.title, titleEn = document.documentElement.dataset.titleEn || titleJa;
+  const apply = l => { document.documentElement.lang = l; document.title = l === 'en' ? titleEn : titleJa; btn.textContent = l === 'en' ? '日本語' : 'EN'; };
+  apply(document.documentElement.lang === 'en' ? 'en' : 'ja');
+  btn.addEventListener('click', () => {
+    const l = document.documentElement.lang === 'en' ? 'ja' : 'en';
+    apply(l);
+    try { localStorage.setItem('lang', l); } catch (e) {}
+  });
 })();
 </script>
 </body>

@@ -17,6 +17,7 @@ python -m http.server 8000
 - `index.html` — トップページ：固定ナビ、Works グリッド、About、SNS（`#sns`：Instagram / X へのリンク）、列車フッター。ナビの Contact は `contact.html` へ遷移する。グリッチ演出はすべて末尾のインラインスクリプト1つにまとまっている（スクロール連動の RGB ズレ／ストライプ／テキストグリッチ、定期的なアンビエントグリッチ、`#` ナビリンクのスムーズスクロール）。
 - `<作品スラッグ>.html`（例：`jinko-haikyo-m2.html`、`e-waste-invaders.html`）— 作品個別ページ。スタイルシートとマークアップの骨格は全ページで同一のものを複製している：上部の動画埋め込み（`.work-video-top` の iframe、YouTube または Vimeo。動画がない作品は `.work-video-top img` で画像を置く）→ `.work-title` / `.work-meta` → 日本語の `.work-description` → `.work-details` の各行（Year/Genre/Venue/Tech）→ 任意の `.work-gallery` → `.work-english` セクション → `.work-nav`（左 `← Prev`・中央 `All Works`・右 `Next →`。トップのカードの並び順につなぎ、最初の作品は Prev、最後の作品は Next の代わりに空の `<span>` を置く）→ フッター。作品ページの JS はロゴのグリッチだけ。
 - `contact.html` — お問い合わせフォーム（名・姓・メール・件名・本文）。作品ページと同じ CSS 基盤。送信は FormSubmit（formsubmit.co）経由で diego.sakane@gmail.com に届く。JS が `<form action>` の URL を `/ajax/` 版に変えて fetch で送る。有効化後はアドレス部分を FormSubmit 発行のランダム文字列に置き換えてアドレスを隠す。
+- 言語切り替え：全ページのナビ右端に `.lang-toggle`（EN ⇄ 日本語）がある。日本語の要素に `.lang-ja`、英語の要素に `.lang-en` を付け、`html[lang="en"]` で出し分ける。選んだ言語は `localStorage.lang` に保存し、`<head>` の小さなスクリプトが読み込み時に `<html lang>` へ反映する。作品ページでは日本語の `.work-description.lang-ja` の直後に英語の `.work-description.lang-en` を置く（以前の末尾 EN セクションは廃止）。作品ページを追加するときは英語版の本文も用意する。
 - CSS はファイルごとにコピーされているため、サイト全体に効かせたいスタイル変更はすべての作品ページ（共通ルールなら `index.html` も）に反映する必要がある。
 
 ## 作品の追加

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-title-en="Daigo Sakane - Official Portfolio">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +33,13 @@ body { background: var(--black); color: var(--white); font-family: var(--font-bo
 ::selection { background: var(--navy); color: var(--white); }
 a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
 a:hover { color: var(--white); }
+/* 言語切り替え：<html lang> に応じて日本語版と英語版を出し分ける */
+.lang-en { display: none; }
+html[lang="en"] .lang-ja { display: none; }
+html[lang="en"] .lang-en { display: revert; }
+.lang-toggle { font-family: var(--font-display), var(--font-jp); font-size: 15px; letter-spacing: 2px; color: var(--white); background: transparent; border: 1px solid rgba(240,236,227,0.4); padding: 3px 10px; cursor: pointer; text-transform: uppercase; transition: border-color 0.3s, color 0.3s; }
+.lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
 
 .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px); opacity: 0.5; }
 
@@ -93,6 +100,9 @@ a.work-card:hover h3 { animation: tf 0.1s steps(1) 3; }
 .about-left .section-header h2 { font-family: var(--font-display); font-size: clamp(48px,8vw,100px); letter-spacing: 6px; text-transform: uppercase; color: var(--white); display: inline-block; position: relative; }
 .about-left .section-header h2::before { content:''; position: absolute; left: -20px; top: 50%; width: 8px; height: 60%; background: var(--accent); transform: translateY(-50%); }
 .about-bio { font-family: var(--font-jp); font-size: 15px; line-height: 2; color: var(--cream); max-width: 500px; }
+.about-bio .about-list { list-style: none; margin: 0 0 1.2em; }
+.about-bio .about-list li::before { content: "・"; }
+html[lang="en"] .about-bio .about-list li::before { content: "— "; }
 .about-photo { margin-top: 40px; max-width: 400px; }
 .about-photo img { width: 100%; height: auto; display: block; filter: contrast(1.05) brightness(0.95); }
 .about-right { padding-top: 80px; }
@@ -139,7 +149,7 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
 @media (max-width: 768px) {
   nav { padding: 16px 20px; } nav .nav-links { gap: 16px; } nav .nav-links a { font-size: 12px; letter-spacing: 2px; }
   .logo-br { display: inline; } nav .logo { font-size: 16px; line-height: 1.3; }
-  #works { padding: 80px 8px 40px; } .works-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+  #works { padding: 80px 16px 40px; } .works-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
   .work-card h3 { font-size: 14px; } .work-card-inner { padding: 14px; }
   #about { grid-template-columns: 1fr; gap: 40px; padding: 80px 20px; } .about-right { padding-top: 0; }
   .train-wrapper { width: 95vw; transform: rotate(-4deg); }
@@ -147,6 +157,7 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
 }
 @media (max-width: 480px) { .works-grid { grid-template-columns: 1fr; } }
 </style>
+<script>try{if(localStorage.getItem("lang")==="en")document.documentElement.lang="en";}catch(e){}</script>
 </head>
 <body>
 <div class="scanlines"></div>
@@ -154,11 +165,14 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
 
 <nav>
   <div class="logo">坂根<br class="logo-br">大悟</div>
+  <div class="nav-right">
   <ul class="nav-links">
-    <li><a href="#works">Works</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="lang-toggle" type="button" aria-label="Switch language">EN</button>
+  </div>
 </nav>
 
 <section id="works">
@@ -218,16 +232,36 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
   <div class="about-left">
     <div class="section-header reveal"><h2 class="glitch-text" data-text="ABOUT">About</h2></div>
     <div class="about-bio reveal">
-      <p>坂根大悟のポートフォリオです。</p><br>
-      <p>大宮市出身。映像作家。都市愛好家。学習院大学文学部史学科卒業。東京藝術大学大学院映像研究科メディア映像専攻 修了。歴史学科で培ったリサーチ手法を基に、その土地の持つ歴史や都市を題材に、立体、映像、ゲームエンジンを組み合わせ、作品を制作。</p><br>
-      <p>グリッチやドロステ現象を、ソフトで再現するのではなく、実際に起こして撮るなど、身体を通した映像制作を探求。</p><br>
-      <p>モニターを壊して物理グリッチを意図的に作ること、散歩しながらゲームを作ること、コラージュ映像制作、VJが趣味。主な展示歴に2023年 さいたま国際芸術祭、2022年六本木アートナイト・オープンコールプロジェクトなど。</p>
+      <div class="lang-ja">
+        <p>坂根大悟のポートフォリオです。</p><br>
+        <p>大宮市出身。映像作家。都市愛好家。学習院大学文学部史学科卒業。東京藝術大学大学院映像研究科メディア映像専攻 修了。歴史学科で培ったリサーチ手法を基に、その土地の持つ歴史や都市を題材に、立体、映像、ゲームエンジン、アナログを組み合わせ、作品を制作。</p><br>
+        <p>今実験していること</p>
+        <ul class="about-list">
+          <li>モニターを壊して物理グリッチを意図的に作ること</li>
+          <li>散歩しながらゲームを作ること</li>
+          <li>ドロステ現象による映像表現</li>
+          <li>和紙による映像装置の探求</li>
+        </ul>
+        <p>主な展示歴に2023年 さいたま国際芸術祭、2022年六本木アートナイト・オープンコールプロジェクトなど。</p>
+      </div>
+      <div class="lang-en">
+        <p>This is the portfolio of Daigo Sakane.</p><br>
+        <p>Born in Omiya, Saitama. Filmmaker and city enthusiast. Graduated from the Department of History, Faculty of Letters, Gakushuin University, and completed the Media Video course at the Graduate School of Film and New Media, Tokyo University of the Arts. Building on research methods learned in history studies, he takes the history and cities of particular places as his subject, combining sculpture, video, game engines and analogue media.</p><br>
+        <p>Currently experimenting with</p>
+        <ul class="about-list">
+          <li>Deliberately creating physical glitches by breaking monitors</li>
+          <li>Making games while walking through the city</li>
+          <li>Video expression using the Droste effect</li>
+          <li>Exploring video devices made of washi paper</li>
+        </ul>
+        <p>Exhibitions include the Saitama International Art Festival (2023) and the Roppongi Art Night Open Call Project (2022).</p>
+      </div>
     </div>
     <div class="about-photo reveal">
       <img src="profile.jpg" alt="Daigo Sakane" />
     </div>
   </div>
-  <div class="about-right reveal">
+  <div class="about-right reveal lang-ja">
     <div class="cv-block"><h4>Biography</h4>
       <div class="cv-item"><span class="cv-year">1995</span><span class="cv-desc">大宮市出身</span></div>
       <div class="cv-item"><span class="cv-year">2013</span><span class="cv-desc">川越東高校 卒業</span></div>
@@ -259,6 +293,40 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
       <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">六本木アートナイト・オープンコールプロジェクト 入選</span></div>
       <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">カルト国際映画祭 入選（監督・編集・脚本・撮影）</span></div>
       <div class="cv-item"><span class="cv-year">2015</span><span class="cv-desc">銚子さんまマラソン 10km 優勝 / 箱根駅伝予選会 出場</span></div>
+    </div>
+  </div>
+  <div class="about-right reveal lang-en">
+    <div class="cv-block"><h4>Biography</h4>
+      <div class="cv-item"><span class="cv-year">1995</span><span class="cv-desc">Born in Omiya, Saitama</span></div>
+      <div class="cv-item"><span class="cv-year">2013</span><span class="cv-desc">Graduated from Kawagoe Higashi High School</span></div>
+      <div class="cv-item"><span class="cv-year">2017</span><span class="cv-desc">BA in History, Faculty of Letters, Gakushuin University</span></div>
+      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">MFA in Media Video, Graduate School of Film and New Media, Tokyo University of the Arts</span></div>
+    </div>
+    <div class="cv-block"><h4>Solo Exhibition</h4>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">"Omiya Mandala 2025," Bonsai Shiki no Ie, Omiya</span></div>
+    </div>
+    <div class="cv-block"><h4>Group Exhibition</h4>
+      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">"DIG SHIBUYA 2026," Hachiko Square, Shibuya</span></div>
+      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">"GEIDAI GAMES 07," Tokyo University of the Arts, Ueno Campus</span></div>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">"GEIDAI GAMES 06," Tokyo University of the Arts, Ueno Campus</span></div>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">"Art Future Lab Exhibition 2025," The University Art Museum, Tokyo University of the Arts, Ueno</span></div>
+      <div class="cv-item"><span class="cv-year">2024</span><span class="cv-desc">"Yokohama Mijinbi Exhibition," Gallery OWL, Yokohama (Agency for Cultural Affairs Media Arts Creators Development Support Program)</span></div>
+      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">"Omiya Mandala," Bonsai Shiki no Ie, Omiya (Saitama International Art Festival open-call program)</span></div>
+      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">"Roppongi Art Night Open Call Project," Roppongi Hills Arena, Roppongi</span></div>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">"Yuenteki Meimetsu Exhibition," Kouka Garou, Kanda</span></div>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">"Ruten," Share Place Chofu Tamagawa / "Saiten," DHU Hachioji Campus</span></div>
+    </div>
+    <div class="cv-block"><h4>Screening</h4>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">Yubari International Fantastic Film Festival, selected short film screening</span></div>
+    </div>
+    <div class="cv-block"><h4>Grants &amp; Awards</h4>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">Saitama Culture and Arts City Creation Grant 2025 (Omiya Mandala 2025)</span></div>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">Selected for the Tokyo University of the Arts "I LOVE YOU" Project 2025</span></div>
+      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">Selected for the Agency for Cultural Affairs Media Arts Creators Development Support Program</span></div>
+      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">Selected for the Saitama International Art Festival open call</span></div>
+      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">Selected for the Roppongi Art Night Open Call Project</span></div>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">Selected at the Cult International Film Festival (director, editor, writer, cinematographer)</span></div>
+      <div class="cv-item"><span class="cv-year">2015</span><span class="cv-desc">1st place, Choshi Sanma Marathon 10 km / Competed in the Hakone Ekiden qualifier</span></div>
     </div>
   </div>
 </section>
@@ -344,6 +412,21 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
   logo.addEventListener('animationend', () => logo.classList.remove('rgb-glitch'));
   const fire = () => { logo.classList.remove('rgb-glitch'); void logo.offsetWidth; logo.classList.add('rgb-glitch'); setTimeout(fire, 3000 + Math.random() * 4000); };
   setTimeout(fire, 1500);
+})();
+</script>
+<script>
+// 言語切り替え：選んだ言語を記憶し、<html lang> を切り替える
+(() => {
+  const btn = document.querySelector('.lang-toggle');
+  if (!btn) return;
+  const titleJa = document.title, titleEn = document.documentElement.dataset.titleEn || titleJa;
+  const apply = l => { document.documentElement.lang = l; document.title = l === 'en' ? titleEn : titleJa; btn.textContent = l === 'en' ? '日本語' : 'EN'; };
+  apply(document.documentElement.lang === 'en' ? 'en' : 'ja');
+  btn.addEventListener('click', () => {
+    const l = document.documentElement.lang === 'en' ? 'ja' : 'en';
+    apply(l);
+    try { localStorage.setItem('lang', l); } catch (e) {}
+  });
 })();
 </script>
 </body>
