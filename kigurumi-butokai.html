@@ -38,6 +38,12 @@ html[lang="en"] .lang-ja { display: none; }
 html[lang="en"] .lang-en { display: revert; }
 .lang-toggle { font-family: var(--font-display), var(--font-jp); font-size: 15px; letter-spacing: 2px; color: rgba(240,236,227,0.45); background: transparent; border: 1px solid rgba(240,236,227,0.22); padding: 3px 10px; cursor: pointer; text-transform: uppercase; transition: border-color 0.3s, color 0.3s; }
 .lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+/* GD高速道路ゴシックJA をアウトライン化した見出し・ラベル（フォントファイルは置かず、文字の形だけを使う） */
+.gd { height: 0.74em; width: auto; display: inline-block; vertical-align: -0.06em; fill: currentColor; overflow: visible; }
+.gd .gd-m { fill: currentColor; }
+.gd .gd-c, .gd .gd-b { opacity: 0; }
+.glitch-text.glitching .gd .gd-c { opacity: 0.8; fill: cyan; animation: gt 0.3s steps(2) infinite; }
+.glitch-text.glitching .gd .gd-b { opacity: 0.8; fill: #4A9EFF; animation: gb 0.3s steps(2) infinite; }
 .lang-toggle:focus-visible { outline: 1px solid var(--accent); }
 .nav-right { display: flex; align-items: center; gap: 20px; }
 
@@ -60,12 +66,13 @@ nav .back-link:hover { color: var(--accent); }
 .work-title { font-family: var(--font-dot); font-weight: 400; font-size: clamp(28px, 5vw, 48px); color: var(--white); line-height: 1.3; margin-bottom: 0.28em; }
 .work-meta { font-family: var(--font-body); font-size: 13px; letter-spacing: 3px; color: var(--grey); text-transform: uppercase; margin-bottom: 50px; }
 
-.work-description { font-family: var(--font-jp); font-size: 16px; line-height: 2; color: var(--cream); margin-bottom: 50px; }
+.work-description { font-family: var(--font-jp); font-size: 16px; line-height: 2; color: var(--cream); margin-bottom: 26px; }
 .work-description p { margin-bottom: 1.2em; }
 
-.work-details { border-top: 1px solid rgba(240,236,227,0.1); padding-top: 40px; margin-bottom: 50px; }
+.work-details { border-top: 1px solid rgba(240,236,227,0.1); padding-top: 22px; margin-bottom: 40px; }
 .work-detail-row { display: grid; grid-template-columns: 140px 1fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(240,236,227,0.05); }
 .work-detail-label { font-family: var(--font-display); font-size: 16px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; }
+.work-detail-label .lang-ja { font-family: var(--font-jp); font-size: 13px; letter-spacing: 2px; text-transform: none; }
 .work-detail-value { font-family: var(--font-jp); font-size: 14px; color: var(--cream); }
 
 .work-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 50px; }
@@ -95,8 +102,8 @@ footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); 
 <nav>
   <a href="index.html" class="logo">坂根大悟</a>
   <div class="nav-right">
-    <a href="index.html#works" class="back-link">← Works</a>
-    <button class="lang-toggle" type="button" aria-label="Switch language">EN</button>
+    <a href="index.html#works" class="back-link"><svg class="gd" viewBox="14 -879 6301 988" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="← WORKS"><path d="M325.0 -563.0 14.0 -383.0 325.0 -198.0V-333.0H1000.0V-429.0H325.0ZM2351.0 -191.0 2472.0 -851.0H2620.0L2429.0 81.0H2295.0L2171.0 -547.0L2047.0 81.0H1913.0L1722.0 -851.0H1871.0L1991.0 -191.0L2111.0 -851.0H2231.0ZM3515.0 -732.0C3453.0 -830.0 3366.0 -879.0 3255.0 -879.0C3144.0 -879.0 3057.0 -830.0 2995.0 -732.0C2938.0 -643.0 2909.0 -527.0 2909.0 -384.0C2909.0 -243.0 2938.0 -127.0 2995.0 -37.0C3057.0 60.0 3144.0 109.0 3255.0 109.0C3366.0 109.0 3453.0 60.0 3515.0 -37.0C3572.0 -127.0 3601.0 -243.0 3601.0 -384.0C3601.0 -527.0 3572.0 -643.0 3515.0 -732.0ZM3111.0 -121.0C3075.0 -182.0 3057.0 -270.0 3057.0 -384.0C3057.0 -498.0 3075.0 -586.0 3111.0 -648.0C3146.0 -708.0 3194.0 -738.0 3255.0 -738.0C3316.0 -738.0 3364.0 -708.0 3399.0 -648.0C3435.0 -586.0 3453.0 -498.0 3453.0 -384.0C3453.0 -270.0 3435.0 -182.0 3399.0 -121.0C3364.0 -62.0 3316.0 -32.0 3255.0 -32.0C3194.0 -32.0 3146.0 -62.0 3111.0 -121.0ZM4440.0 -270.0C4455.0 -230.0 4463.0 -181.0 4463.0 -124.0C4463.0 -61.0 4465.0 -19.0 4468.0 2.0C4473.0 35.0 4486.0 62.0 4505.0 81.0H4357.0C4333.0 53.0 4321.0 11.0 4321.0 -46.0V-159.0C4321.0 -203.0 4310.0 -240.0 4287.0 -271.0C4266.0 -300.0 4242.0 -314.0 4215.0 -314.0H4060.0V81.0H3919.0V-851.0H4258.0C4318.0 -851.0 4368.0 -832.0 4407.0 -793.0C4454.0 -747.0 4477.0 -681.0 4477.0 -596.0C4477.0 -549.0 4465.0 -506.0 4441.0 -469.0C4415.0 -428.0 4378.0 -399.0 4329.0 -384.0C4381.0 -363.0 4418.0 -325.0 4440.0 -270.0ZM4230.0 -709.0H4060.0V-455.0H4230.0C4263.0 -455.0 4290.0 -468.0 4309.0 -495.0C4327.0 -519.0 4336.0 -548.0 4336.0 -582.0C4336.0 -617.0 4327.0 -646.0 4309.0 -670.0C4290.0 -696.0 4263.0 -709.0 4230.0 -709.0ZM5439.0 81.0H5269.0L5050.0 -338.0L4944.0 -194.0V81.0H4803.0V-851.0H4944.0V-423.0L5248.0 -851.0H5418.0L5142.0 -466.0ZM5805.0 -793.0C5764.0 -743.0 5743.0 -682.0 5743.0 -610.0C5743.0 -540.0 5759.0 -482.0 5791.0 -436.0C5816.0 -400.0 5847.0 -375.0 5884.0 -360.0L6082.0 -279.0C6119.0 -264.0 6144.0 -247.0 6157.0 -229.0C6168.0 -214.0 6174.0 -193.0 6174.0 -166.0C6174.0 -152.0 6172.0 -138.0 6168.0 -124.0C6163.0 -108.0 6155.0 -94.0 6145.0 -81.0C6118.0 -48.0 6078.0 -32.0 6025.0 -32.0C5967.0 -32.0 5926.0 -46.0 5903.0 -74.0C5881.0 -100.0 5870.0 -143.0 5870.0 -202.0H5729.0C5729.0 5.0 5828.0 109.0 6025.0 109.0C6114.0 109.0 6186.0 80.0 6239.0 22.0C6290.0 -33.0 6315.0 -103.0 6315.0 -187.0C6315.0 -248.0 6297.0 -299.0 6262.0 -342.0C6234.0 -377.0 6199.0 -401.0 6156.0 -416.0L5972.0 -494.0C5913.0 -517.0 5884.0 -556.0 5884.0 -610.0C5884.0 -642.0 5893.0 -670.0 5910.0 -693.0C5933.0 -723.0 5966.0 -738.0 6011.0 -738.0C6106.0 -738.0 6153.0 -688.0 6153.0 -589.0H6294.0C6294.0 -782.0 6200.0 -879.0 6011.0 -879.0C5922.0 -879.0 5854.0 -850.0 5805.0 -793.0Z" fill="currentColor"/></svg></a>
+    <button class="lang-toggle" type="button" aria-label="Switch language"><span class="lang-ja"><svg class="gd" viewBox="71 -851 1351 932" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="EN"><path d="M212.0 -335.0V-60.0H601.0V81.0H71.0V-851.0H587.0V-709.0H212.0V-476.0H544.0V-335.0ZM1281.0 -191.0V-851.0H1422.0V81.0H1253.0L977.0 -582.0V81.0H836.0V-851.0H1005.0Z" fill="currentColor"/></svg></span><span class="lang-en"><svg class="gd" viewBox="85 -860 1938 960" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="日本語"><path d="M915.0 90.0V-820.0H85.0V90.0ZM825.0 -730.0V-415.0H175.0V-730.0ZM175.0 0.0V-325.0H825.0V0.0ZM1495.0 -695.0H1075.0V-605.0H1449.0C1357.0 -425.0 1226.0 -283.0 1057.0 -179.0L1102.0 -102.0C1262.0 -200.0 1393.0 -333.0 1495.0 -501.0V-140.0H1235.0V-50.0H1495.0V100.0H1585.0V-50.0H1845.0V-140.0H1585.0V-501.0C1687.0 -333.0 1818.0 -200.0 1978.0 -102.0L2023.0 -179.0C1854.0 -283.0 1723.0 -425.0 1631.0 -605.0H2005.0V-695.0H1585.0V-860.0H1495.0Z" fill="currentColor"/></svg></span></button>
   </div>
 </nav>
 
@@ -126,22 +133,22 @@ Cast: <a href="https://www.gurre.com/men/masafumi_noda/index.html" target="_blan
 
   <div class="work-details">
     <div class="work-detail-row">
-      <span class="work-detail-label">Year</span>
+      <span class="work-detail-label"><span class="lang-ja">年</span><span class="lang-en">Year</span></span>
       <span class="work-detail-value">2019</span>
     </div>
     <div class="work-detail-row">
-      <span class="work-detail-label">Genre</span>
+      <span class="work-detail-label"><span class="lang-ja">ジャンル</span><span class="lang-en">Genre</span></span>
       <span class="work-detail-value">Short Film</span>
     </div>
     <div class="work-detail-row">
-      <span class="work-detail-label">Tech</span>
+      <span class="work-detail-label"><span class="lang-ja">使用技術</span><span class="lang-en">Tech</span></span>
       <span class="work-detail-value">Premiere Pro</span>
     </div>
   </div>
 
   <div class="work-nav">
-    <a class="nav-prev" href="denko-sekka.html">← Prev</a>
-    <a href="index.html#works">All Works</a>
+    <a class="nav-prev" data-gd="prev" href="denko-sekka.html"><svg class="gd" viewBox="14 -851 4955 932" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="← PREV"><path d="M325.0 -563.0 14.0 -383.0 325.0 -198.0V-333.0H1000.0V-429.0H325.0ZM1751.0 -851.0H2083.0C2140.0 -851.0 2191.0 -826.0 2236.0 -775.0C2285.0 -719.0 2309.0 -648.0 2309.0 -561.0C2309.0 -474.0 2285.0 -403.0 2236.0 -348.0C2191.0 -297.0 2140.0 -272.0 2083.0 -272.0H1892.0V81.0H1751.0ZM1892.0 -413.0H2055.0C2090.0 -413.0 2117.0 -427.0 2138.0 -455.0C2158.0 -482.0 2168.0 -518.0 2168.0 -561.0C2168.0 -604.0 2158.0 -640.0 2138.0 -667.0C2117.0 -695.0 2090.0 -709.0 2055.0 -709.0H1892.0ZM3149.0 -270.0C3164.0 -230.0 3172.0 -181.0 3172.0 -124.0C3172.0 -61.0 3174.0 -19.0 3177.0 2.0C3182.0 35.0 3195.0 62.0 3214.0 81.0H3066.0C3042.0 53.0 3030.0 11.0 3030.0 -46.0V-159.0C3030.0 -203.0 3019.0 -240.0 2996.0 -271.0C2975.0 -300.0 2951.0 -314.0 2924.0 -314.0H2769.0V81.0H2628.0V-851.0H2967.0C3027.0 -851.0 3077.0 -832.0 3116.0 -793.0C3163.0 -747.0 3186.0 -681.0 3186.0 -596.0C3186.0 -549.0 3174.0 -506.0 3150.0 -469.0C3124.0 -428.0 3087.0 -399.0 3038.0 -384.0C3090.0 -363.0 3127.0 -325.0 3149.0 -270.0ZM2939.0 -709.0H2769.0V-455.0H2939.0C2972.0 -455.0 2999.0 -468.0 3018.0 -495.0C3036.0 -519.0 3045.0 -548.0 3045.0 -582.0C3045.0 -617.0 3036.0 -646.0 3018.0 -670.0C2999.0 -696.0 2972.0 -709.0 2939.0 -709.0ZM3653.0 -335.0V-60.0H4042.0V81.0H3512.0V-851.0H4028.0V-709.0H3653.0V-476.0H3985.0V-335.0ZM4643.0 -124.0 4820.0 -851.0H4969.0L4721.0 81.0H4566.0L4318.0 -851.0H4467.0Z" fill="currentColor"/></svg></a>
+    <a href="index.html#works"><svg class="gd" viewBox="42 -879 7689 988" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ALL WORKS"><path d="M721.0 81.0H572.0L519.0 -124.0H244.0L191.0 81.0H42.0L304.0 -851.0H459.0ZM382.0 -660.0 279.0 -265.0H484.0ZM1166.0 -851.0V-60.0H1548.0V81.0H1025.0V-851.0ZM1992.0 -851.0V-60.0H2374.0V81.0H1851.0V-851.0ZM3767.0 -191.0 3888.0 -851.0H4036.0L3845.0 81.0H3711.0L3587.0 -547.0L3463.0 81.0H3329.0L3138.0 -851.0H3287.0L3407.0 -191.0L3527.0 -851.0H3647.0ZM4931.0 -732.0C4869.0 -830.0 4782.0 -879.0 4671.0 -879.0C4560.0 -879.0 4473.0 -830.0 4411.0 -732.0C4354.0 -643.0 4325.0 -527.0 4325.0 -384.0C4325.0 -243.0 4354.0 -127.0 4411.0 -37.0C4473.0 60.0 4560.0 109.0 4671.0 109.0C4782.0 109.0 4869.0 60.0 4931.0 -37.0C4988.0 -127.0 5017.0 -243.0 5017.0 -384.0C5017.0 -527.0 4988.0 -643.0 4931.0 -732.0ZM4527.0 -121.0C4491.0 -182.0 4473.0 -270.0 4473.0 -384.0C4473.0 -498.0 4491.0 -586.0 4527.0 -648.0C4562.0 -708.0 4610.0 -738.0 4671.0 -738.0C4732.0 -738.0 4780.0 -708.0 4815.0 -648.0C4851.0 -586.0 4869.0 -498.0 4869.0 -384.0C4869.0 -270.0 4851.0 -182.0 4815.0 -121.0C4780.0 -62.0 4732.0 -32.0 4671.0 -32.0C4610.0 -32.0 4562.0 -62.0 4527.0 -121.0ZM5856.0 -270.0C5871.0 -230.0 5879.0 -181.0 5879.0 -124.0C5879.0 -61.0 5881.0 -19.0 5884.0 2.0C5889.0 35.0 5902.0 62.0 5921.0 81.0H5773.0C5749.0 53.0 5737.0 11.0 5737.0 -46.0V-159.0C5737.0 -203.0 5726.0 -240.0 5703.0 -271.0C5682.0 -300.0 5658.0 -314.0 5631.0 -314.0H5476.0V81.0H5335.0V-851.0H5674.0C5734.0 -851.0 5784.0 -832.0 5823.0 -793.0C5870.0 -747.0 5893.0 -681.0 5893.0 -596.0C5893.0 -549.0 5881.0 -506.0 5857.0 -469.0C5831.0 -428.0 5794.0 -399.0 5745.0 -384.0C5797.0 -363.0 5834.0 -325.0 5856.0 -270.0ZM5646.0 -709.0H5476.0V-455.0H5646.0C5679.0 -455.0 5706.0 -468.0 5725.0 -495.0C5743.0 -519.0 5752.0 -548.0 5752.0 -582.0C5752.0 -617.0 5743.0 -646.0 5725.0 -670.0C5706.0 -696.0 5679.0 -709.0 5646.0 -709.0ZM6855.0 81.0H6685.0L6466.0 -338.0L6360.0 -194.0V81.0H6219.0V-851.0H6360.0V-423.0L6664.0 -851.0H6834.0L6558.0 -466.0ZM7221.0 -793.0C7180.0 -743.0 7159.0 -682.0 7159.0 -610.0C7159.0 -540.0 7175.0 -482.0 7207.0 -436.0C7232.0 -400.0 7263.0 -375.0 7300.0 -360.0L7498.0 -279.0C7535.0 -264.0 7560.0 -247.0 7573.0 -229.0C7584.0 -214.0 7590.0 -193.0 7590.0 -166.0C7590.0 -152.0 7588.0 -138.0 7584.0 -124.0C7579.0 -108.0 7571.0 -94.0 7561.0 -81.0C7534.0 -48.0 7494.0 -32.0 7441.0 -32.0C7383.0 -32.0 7342.0 -46.0 7319.0 -74.0C7297.0 -100.0 7286.0 -143.0 7286.0 -202.0H7145.0C7145.0 5.0 7244.0 109.0 7441.0 109.0C7530.0 109.0 7602.0 80.0 7655.0 22.0C7706.0 -33.0 7731.0 -103.0 7731.0 -187.0C7731.0 -248.0 7713.0 -299.0 7678.0 -342.0C7650.0 -377.0 7615.0 -401.0 7572.0 -416.0L7388.0 -494.0C7329.0 -517.0 7300.0 -556.0 7300.0 -610.0C7300.0 -642.0 7309.0 -670.0 7326.0 -693.0C7349.0 -723.0 7382.0 -738.0 7427.0 -738.0C7522.0 -738.0 7569.0 -688.0 7569.0 -589.0H7710.0C7710.0 -782.0 7616.0 -879.0 7427.0 -879.0C7338.0 -879.0 7270.0 -850.0 7221.0 -793.0Z" fill="currentColor"/></svg></a>
     <span></span>
   </div>
 
@@ -164,7 +171,7 @@ Cast: <a href="https://www.gurre.com/men/masafumi_noda/index.html" target="_blan
   const btn = document.querySelector('.lang-toggle');
   if (!btn) return;
   const titleJa = document.title, titleEn = document.documentElement.dataset.titleEn || titleJa;
-  const apply = l => { document.documentElement.lang = l; document.title = l === 'en' ? titleEn : titleJa; btn.textContent = l === 'en' ? '日本語' : 'EN'; };
+  const apply = l => { document.documentElement.lang = l; document.title = l === 'en' ? titleEn : titleJa; };
   apply(document.documentElement.lang === 'en' ? 'en' : 'ja');
   btn.addEventListener('click', () => {
     const l = document.documentElement.lang === 'en' ? 'ja' : 'en';
