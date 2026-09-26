@@ -69,7 +69,7 @@ nav .nav-links a::after { content:''; position: absolute; bottom: -4px; left: 0;
 nav .nav-links a:hover::after { width: 100%; }
 
 /* WORKS — TOP */
-#works { padding: 100px 5% 80px; position: relative; overflow: hidden; min-height: 100vh;
+#works { padding: 100px 9.5% 80px; position: relative; overflow: hidden; min-height: 100vh;
   display: flex; flex-direction: column; justify-content: safe center; }
 #works::before {
   content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
@@ -81,10 +81,28 @@ nav .nav-links a:hover::after { width: 100%; }
 @keyframes sd { 0%{top:0}100%{top:100%} }
 
 /* 障子の桟のように、カードのすき間と外枠を細い線で見せる（暗め） */
-.works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; position: relative; z-index: 1; padding: 5px; max-width: 1500px; margin: 0 auto; flex: 0 0 auto; width: 100%;
+.works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; position: relative; z-index: 1; padding: 5px; max-width: 1160px; margin: 0 auto; flex: 0 0 auto; width: 100%;
   /* 左上から光が当たる桟：明るい面と影の面をグラデーションでつくる */
   background-image: linear-gradient(135deg, rgba(240,236,227,0.26) 0%, rgba(232,224,208,0.16) 45%, rgba(120,114,104,0.14) 100%);
   box-shadow: 0 0 0 1px rgba(10,10,10,0.9), 0 16px 40px rgba(0,0,0,0.65); }
+@media (min-width: 1100px) { .works-grid { grid-template-columns: repeat(4, 1fr); } }
+/* 画面の縁の陰影（固定。影は動かさず、動かすのは transform と opacity だけにして滑らかに保つ） */
+.works-grid::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 5;
+  box-shadow: inset 0 0 60px rgba(0,0,0,0.55), inset 0 0 140px rgba(0,0,0,0.35); }
+/* カーソルを重ねるとブラウン管の表面のようにふくらむ */
+.works-grid { border-radius: 14px / 11px; transform-origin: 50% 60%; transition: transform 0.5s ease; will-change: transform; }
+.works-grid:hover { transform: perspective(1500px) rotateX(1.4deg) scale(1.012); }
+.works-grid::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 6; opacity: 0;
+  transition: opacity 0.5s ease; background: radial-gradient(120% 80% at 50% 0%, rgba(0,0,0,0.28), rgba(0,0,0,0) 55%),
+    radial-gradient(130% 100% at 50% 50%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.45) 100%); }
+.works-grid:hover::before { opacity: 1; }
+/* テレビの筐体：つまみ・スピーカー・脚 */
+.tv-base { width: 100%; max-width: 1160px; margin: 0 auto; height: 34px; border-radius: 0 0 10px 10px; background: rgba(232,224,208,0.16);
+  display: flex; align-items: center; justify-content: flex-end; gap: 14px; padding: 0 18px; position: relative; z-index: 1; }
+.tv-grill { flex: 0 1 180px; height: 12px; background: repeating-linear-gradient(90deg, rgba(10,10,10,0.5) 0 2px, transparent 2px 5px); border-radius: 2px; }
+.tv-dial { width: 14px; height: 14px; border-radius: 50%; background: rgba(10,10,10,0.5); box-shadow: inset 0 0 0 1px rgba(240,236,227,0.25); }
+.tv-base::before, .tv-base::after { content: ""; position: absolute; bottom: -10px; width: 46px; height: 10px; background: rgba(232,224,208,0.12); border-radius: 0 0 4px 4px; }
+.tv-base::before { left: 12%; } .tv-base::after { right: 12%; }
 /* 広い画面では4列にしてカードを小さめに */
 .work-card { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: pointer; background: #111; display: block; color: inherit; text-decoration: none;
   box-shadow: inset 3px 3px 7px rgba(0,0,0,0.9), inset -2px -2px 5px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(10,10,10,0.9); }
@@ -232,6 +250,11 @@ footer { padding: 25px 40px; text-align: center; font-family: var(--font-body); 
       <div class="work-bg"><img class="thumb" src="images/thumb-kigurumi-butokai.jpg" alt="着ぐるみ舞踏会" loading="lazy"></div>
       <div class="work-card-inner"><span class="work-year">2019</span><h3>着ぐるみ舞踏会</h3><span class="work-tags">Short Film</span></div>
     </a>
+  </div>
+  <div class="tv-base" aria-hidden="true">
+    <span class="tv-grill"></span>
+    <span class="tv-dial"></span>
+    <span class="tv-dial"></span>
   </div>
 </section>
 
