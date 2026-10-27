@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja" data-title-en="About — Daigo Sakane">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Daigo Sakane</title>
+<meta name="description" content="映像作家・坂根大悟のプロフィールと経歴。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Daigo Sakane">
+<meta property="og:title" content="About — Daigo Sakane">
+<meta property="og:description" content="映像作家・坂根大悟のプロフィールと経歴。">
+<meta property="og:url" content="https://daigosakane.com/about">
+<meta property="og:image" content="https://daigosakane.com/images/og/site.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@400;700;900&family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #062C54; --accent: #4A9EFF;
+  --black: #0A0A0A; --white: #F0ECE3; --cream: #E8E0D0; --grey: #888;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Space Mono', monospace;
+  --font-jp: 'Noto Sans JP', sans-serif;
+  --font-dot: 'DotGothic16', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: var(--font-body); font-size: 14px; line-height: 1.6; overflow-x: hidden; }
+::selection { background: var(--navy); color: var(--white); }
+a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--white); }
+/* 言語切り替え：<html lang> に応じて日本語版と英語版を出し分ける */
+.lang-en { display: none; }
+html[lang="en"] .lang-ja { display: none; }
+html[lang="en"] .lang-en { display: revert; }
+.lang-toggle { font-family: var(--font-display), var(--font-jp); font-size: 15px; letter-spacing: 2px; color: rgba(240,236,227,0.45); background: transparent; border: 1px solid rgba(240,236,227,0.22); padding: 3px 10px; cursor: pointer; text-transform: uppercase; transition: border-color 0.3s, color 0.3s; }
+.lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+/* GD高速道路ゴシックJA をアウトライン化した見出し・ラベル（フォントファイルは置かず、文字の形だけを使う） */
+.gd { height: 0.74em; width: auto; display: inline-block; vertical-align: -0.06em; fill: currentColor; overflow: visible; }
+.gd .gd-m { fill: currentColor; }
+.gd .gd-c, .gd .gd-b { opacity: 0; }
+.glitch-text.glitching .gd .gd-c { opacity: 0.8; fill: cyan; animation: gt 0.3s steps(2) infinite; }
+.glitch-text.glitching .gd .gd-b { opacity: 0.8; fill: #4A9EFF; animation: gb 0.3s steps(2) infinite; }
+.lang-toggle:focus-visible { outline: 1px solid var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+
+.scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px); opacity: 0.5; }
+
+nav { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+nav .logo { font-family: var(--font-dot); font-weight: 400; font-size: 18px; letter-spacing: 4px; color: rgba(240,236,227,0.8); }
+/* 名前の定期グリッチ：赤と水色を左右にずらす色収差 */
+@keyframes logo-rgb { 0%{text-shadow:-2px 0 rgba(255,0,70,.85),2px 0 rgba(0,220,255,.85);transform:translateX(0)} 20%{text-shadow:3px 0 rgba(255,0,70,.85),-3px 0 rgba(0,220,255,.85);transform:translateX(1px)} 40%{text-shadow:-1px 0 rgba(255,0,70,.85),1px 0 rgba(0,220,255,.85);transform:translateX(-1px)} 60%{text-shadow:2px 1px rgba(255,0,70,.85),-2px -1px rgba(0,220,255,.85);transform:translateX(0)} 80%,100%{text-shadow:none;transform:none} }
+nav .logo.rgb-glitch { display: inline-block; animation: logo-rgb 0.4s steps(1); }
+nav .back-link { font-family: var(--font-display); font-size: 16px; letter-spacing: 3px; color: rgba(240,236,227,0.45); text-transform: uppercase; transition: color 0.3s; }
+nav .back-link:hover { color: var(--accent); }
+
+.contact-page { max-width: 900px; margin: 0 auto; padding: 60px 40px 100px; }
+.contact-title { font-family: var(--font-display); font-size: clamp(48px, 10vw, 120px); letter-spacing: 6px; color: var(--white); text-transform: uppercase; line-height: 1; margin-bottom: 60px; position: relative; display: inline-block; }
+
+.form-group { margin-bottom: 30px; border: 0; }
+.form-legend, .form-label { display: block; font-family: var(--font-body); font-size: 12px; letter-spacing: 1px; color: var(--grey); margin-bottom: 8px; }
+.form-sublabel { display: block; font-family: var(--font-body); font-size: 12px; letter-spacing: 1px; color: var(--grey); margin-bottom: 8px; }
+.name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+
+.form-input { width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgba(240,236,227,0.25); color: var(--white); font-family: var(--font-jp); font-size: 15px; padding: 10px 0; border-radius: 0; outline: none; transition: border-color 0.25s; }
+.form-input:focus { border-bottom-color: var(--accent); }
+textarea.form-input { min-height: 160px; resize: vertical; line-height: 1.9; }
+
+.form-submit { font-family: var(--font-display); font-size: 16px; letter-spacing: 3px; text-transform: uppercase; padding: 11px 34px; border: 1px solid rgba(240,236,227,0.35); background: transparent; color: rgba(240,236,227,0.75); cursor: pointer; transition: border-color 0.3s, color 0.3s; margin-top: 18px; }
+.form-submit:hover { border-color: var(--accent); color: var(--accent); }
+.form-submit:disabled { opacity: 0.5; cursor: wait; }
+.form-status { margin-top: 24px; font-family: var(--font-jp); font-size: 14px; color: var(--cream); min-height: 1.6em; }
+.form-status.error { color: #ff6b6b; }
+.contact-note { margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(240,236,227,0.1); font-family: var(--font-jp); font-size: 14px; color: var(--cream); }
+.contact-note a { font-family: var(--font-display); font-size: 16px; letter-spacing: 2px; }
+
+footer { padding: 30px 40px; text-align: center; font-family: var(--font-body); font-size: 11px; letter-spacing: 3px; color: rgba(240,236,227,0.4); }
+
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .contact-page { padding: 40px 20px 80px; }
+  .contact-title { margin-bottom: 40px; }
+  .name-row { grid-template-columns: 1fr; }
+}
+/* ABOUT ページ */
+.about-page { max-width: 900px; margin: 0 auto; padding: 60px 40px 100px; }
+.about-page .about-title { font-family: var(--font-display); font-size: clamp(48px, 10vw, 120px); letter-spacing: 6px; color: var(--white); text-transform: uppercase; line-height: 1; margin-bottom: 44px; }
+.about-page .about-title .gd { height: 0.74em; }
+.about-cv { margin-top: 56px; }
+.about-bio { font-family: var(--font-jp); font-size: 15px; line-height: 2; color: var(--cream); max-width: 500px; }
+.about-bio .about-list { list-style: none; margin: 0 0 1.2em; }
+.about-bio .about-list li::before { content: "・"; }
+html[lang="en"] .about-bio .about-list li::before { content: "— "; }
+.about-photo { margin-top: 40px; max-width: 400px; }
+.about-photo img { width: 100%; height: auto; display: block; filter: contrast(1.05) brightness(0.95); }
+.cv-block { margin-bottom: 44px; }
+.cv-block h4 { font-family: var(--font-display), var(--font-jp); font-size: 15px; letter-spacing: 2px; color: var(--accent); margin-bottom: 5px; text-transform: uppercase; }
+.cv-item { display: grid; grid-template-columns: 52px 1fr; gap: 14px; margin-bottom: 7px; font-size: 13px; line-height: 1.7; }
+.cv-year { font-family: var(--font-jp); color: var(--grey); letter-spacing: 0; }
+.cv-desc { font-family: var(--font-jp); color: var(--cream); }
+@media (max-width: 768px) { .about-page { padding: 40px 20px 80px; } }
+</style>
+<script>try{if(localStorage.getItem("lang")==="en")document.documentElement.lang="en";}catch(e){}</script>
+</head>
+<body>
+<div class="scanlines"></div>
+
+<nav>
+  <a href="index.html" class="logo">坂根大悟</a>
+  <div class="nav-right">
+    <a href="index.html" class="back-link"><svg class="gd" viewBox="14 -879 4159 988" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="← TOP"><path d="M325.0 -563.0 14.0 -383.0 325.0 -198.0V-333.0H1000.0V-429.0H325.0ZM1722.0 -851.0H2316.0V-709.0H2090.0V81.0H1949.0V-709.0H1722.0ZM3211.0 -732.0C3149.0 -830.0 3062.0 -879.0 2951.0 -879.0C2840.0 -879.0 2753.0 -830.0 2691.0 -732.0C2634.0 -643.0 2605.0 -527.0 2605.0 -384.0C2605.0 -243.0 2634.0 -127.0 2691.0 -37.0C2753.0 60.0 2840.0 109.0 2951.0 109.0C3062.0 109.0 3149.0 60.0 3211.0 -37.0C3268.0 -127.0 3297.0 -243.0 3297.0 -384.0C3297.0 -527.0 3268.0 -643.0 3211.0 -732.0ZM2807.0 -121.0C2771.0 -182.0 2753.0 -270.0 2753.0 -384.0C2753.0 -498.0 2771.0 -586.0 2807.0 -648.0C2842.0 -708.0 2890.0 -738.0 2951.0 -738.0C3012.0 -738.0 3060.0 -708.0 3095.0 -648.0C3131.0 -586.0 3149.0 -498.0 3149.0 -384.0C3149.0 -270.0 3131.0 -182.0 3095.0 -121.0C3060.0 -62.0 3012.0 -32.0 2951.0 -32.0C2890.0 -32.0 2842.0 -62.0 2807.0 -121.0ZM3615.0 -851.0H3947.0C4004.0 -851.0 4055.0 -826.0 4100.0 -775.0C4149.0 -719.0 4173.0 -648.0 4173.0 -561.0C4173.0 -474.0 4149.0 -403.0 4100.0 -348.0C4055.0 -297.0 4004.0 -272.0 3947.0 -272.0H3756.0V81.0H3615.0ZM3756.0 -413.0H3919.0C3954.0 -413.0 3981.0 -427.0 4002.0 -455.0C4022.0 -482.0 4032.0 -518.0 4032.0 -561.0C4032.0 -604.0 4022.0 -640.0 4002.0 -667.0C3981.0 -695.0 3954.0 -709.0 3919.0 -709.0H3756.0Z" fill="currentColor"/></svg></a>
+    <button class="lang-toggle" type="button" aria-label="Switch language"><span class="lang-ja"><svg class="gd" viewBox="71 -851 1351 932" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="EN"><path d="M212.0 -335.0V-60.0H601.0V81.0H71.0V-851.0H587.0V-709.0H212.0V-476.0H544.0V-335.0ZM1281.0 -191.0V-851.0H1422.0V81.0H1253.0L977.0 -582.0V81.0H836.0V-851.0H1005.0Z" fill="currentColor"/></svg></span><span class="lang-en"><svg class="gd" viewBox="85 -860 1938 960" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="日本語"><path d="M915.0 90.0V-820.0H85.0V90.0ZM825.0 -730.0V-415.0H175.0V-730.0ZM175.0 0.0V-325.0H825.0V0.0ZM1495.0 -695.0H1075.0V-605.0H1449.0C1357.0 -425.0 1226.0 -283.0 1057.0 -179.0L1102.0 -102.0C1262.0 -200.0 1393.0 -333.0 1495.0 -501.0V-140.0H1235.0V-50.0H1495.0V100.0H1585.0V-50.0H1845.0V-140.0H1585.0V-501.0C1687.0 -333.0 1818.0 -200.0 1978.0 -102.0L2023.0 -179.0C1854.0 -283.0 1723.0 -425.0 1631.0 -605.0H2005.0V-695.0H1585.0V-860.0H1495.0Z" fill="currentColor"/></svg></span></button>
+  </div>
+</nav>
+
+<main class="about-page">
+  <h1 class="about-title"><svg class="gd" viewBox="42 -879 4119 988" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ABOUT"><defs><path id="gd-about-6993" d="M721.0 81.0H572.0L519.0 -124.0H244.0L191.0 81.0H42.0L304.0 -851.0H459.0ZM382.0 -660.0 279.0 -265.0H484.0ZM1489.0 -487.0C1464.0 -450.0 1430.0 -424.0 1385.0 -409.0C1491.0 -379.0 1544.0 -300.0 1544.0 -173.0C1544.0 -90.0 1516.0 -24.0 1460.0 23.0C1414.0 62.0 1360.0 81.0 1297.0 81.0H965.0V-851.0H1297.0C1358.0 -851.0 1409.0 -833.0 1450.0 -796.0C1499.0 -752.0 1523.0 -688.0 1523.0 -603.0C1523.0 -560.0 1512.0 -521.0 1489.0 -487.0ZM1269.0 -716.0H1106.0V-469.0H1269.0C1302.0 -469.0 1330.0 -482.0 1352.0 -509.0C1372.0 -534.0 1382.0 -563.0 1382.0 -596.0C1382.0 -629.0 1372.0 -657.0 1352.0 -680.0C1331.0 -704.0 1303.0 -716.0 1269.0 -716.0ZM1106.0 -53.0H1269.0C1358.0 -53.0 1403.0 -103.0 1403.0 -202.0C1403.0 -245.0 1389.0 -280.0 1362.0 -306.0C1337.0 -330.0 1306.0 -342.0 1269.0 -342.0H1106.0ZM2394.0 -732.0C2332.0 -830.0 2245.0 -879.0 2134.0 -879.0C2023.0 -879.0 1936.0 -830.0 1874.0 -732.0C1817.0 -643.0 1788.0 -527.0 1788.0 -384.0C1788.0 -243.0 1817.0 -127.0 1874.0 -37.0C1936.0 60.0 2023.0 109.0 2134.0 109.0C2245.0 109.0 2332.0 60.0 2394.0 -37.0C2451.0 -127.0 2480.0 -243.0 2480.0 -384.0C2480.0 -527.0 2451.0 -643.0 2394.0 -732.0ZM1990.0 -121.0C1954.0 -182.0 1936.0 -270.0 1936.0 -384.0C1936.0 -498.0 1954.0 -586.0 1990.0 -648.0C2025.0 -708.0 2073.0 -738.0 2134.0 -738.0C2195.0 -738.0 2243.0 -708.0 2278.0 -648.0C2314.0 -586.0 2332.0 -498.0 2332.0 -384.0C2332.0 -270.0 2314.0 -182.0 2278.0 -121.0C2243.0 -62.0 2195.0 -32.0 2134.0 -32.0C2073.0 -32.0 2025.0 -62.0 1990.0 -121.0ZM3183.0 -194.0V-851.0H3324.0V-194.0C3324.0 -113.0 3303.0 -46.0 3262.0 8.0C3211.0 75.0 3134.0 109.0 3031.0 109.0C2928.0 109.0 2851.0 75.0 2800.0 8.0C2759.0 -46.0 2738.0 -113.0 2738.0 -194.0V-851.0H2879.0V-194.0C2879.0 -143.0 2893.0 -102.0 2922.0 -73.0C2949.0 -46.0 2986.0 -32.0 3031.0 -32.0C3076.0 -32.0 3113.0 -46.0 3140.0 -73.0C3169.0 -102.0 3183.0 -143.0 3183.0 -194.0ZM3567.0 -851.0H4161.0V-709.0H3935.0V81.0H3794.0V-709.0H3567.0Z"/></defs><use class="gd-c" href="#gd-about-6993"/><use class="gd-b" href="#gd-about-6993"/><use class="gd-m" href="#gd-about-6993"/></svg></h1>
+  <div class="about-bio">
+    <div class="lang-ja">
+      <p>坂根大悟のポートフォリオです。</p><br>
+      <p>大宮市出身。映像作家。都市愛好家。学習院大学文学部史学科卒業。東京藝術大学大学院映像研究科メディア映像専攻 修了。歴史学科で培ったリサーチ手法を基に、その土地の持つ歴史や都市を題材に、立体、映像、ゲームエンジン、アナログを組み合わせ、作品を制作。</p><br>
+      <p>今実験していること</p>
+      <ul class="about-list">
+        <li>モニターを壊して物理グリッチを意図的に作ること</li>
+        <li>散歩しながらゲームを作ること</li>
+        <li>ドロステ現象による映像表現</li>
+        <li>和紙による映像装置の探求</li>
+      </ul>
+      <p>主な展示歴に2023年 さいたま国際芸術祭、2022年六本木アートナイト・オープンコールプロジェクトなど。</p>
+    </div>
+    <div class="lang-en">
+      <p>This is the portfolio of Daigo Sakane.</p><br>
+      <p>Born in Omiya, Saitama. Filmmaker and city enthusiast. Graduated from the Department of History, Faculty of Letters, Gakushuin University, and completed the Media Video course at the Graduate School of Film and New Media, Tokyo University of the Arts. Building on research methods learned in history studies, he takes the history and cities of particular places as his subject, combining sculpture, video, game engines and analogue media.</p><br>
+      <p>Currently experimenting with</p>
+      <ul class="about-list">
+        <li>Deliberately creating physical glitches by breaking monitors</li>
+        <li>Making games while walking through the city</li>
+        <li>Video expression using the Droste effect</li>
+        <li>Exploring video devices made of washi paper</li>
+      </ul>
+      <p>Exhibitions include the Saitama International Art Festival (2023) and the Roppongi Art Night Open Call Project (2022).</p>
+    </div>
+  </div>
+  <div class="about-photo">
+      <img src="profile.jpg" alt="Daigo Sakane" />
+    </div>
+  <div class="about-cv lang-ja">
+    <div class="cv-block"><h4>個展</h4>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">「大宮曼荼羅 2025」盆栽四季の家、埼玉</span></div>
+    </div>
+    <div class="cv-block"><h4>グループ展</h4>
+      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">「DIG SHIBUYA 2026」渋谷ハチ公前広場、東京</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">「GEIDAI GAMES 07」東京藝術大学上野キャンパス、東京</span></div>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">「GEIDAI GAMES 06」東京藝術大学上野キャンパス、東京</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">「芸術未来研究場展 2025」東京藝術大学大学美術館、東京</span></div>
+      <div class="cv-item"><span class="cv-year">2024</span><span class="cv-desc">「横浜微塵美展」ギャラリー OWL、神奈川（文化庁メディア芸術クリエイター育成支援事業）</span></div>
+      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">「大宮曼荼羅」盆栽四季の家、埼玉（さいたま国際芸術祭公募プログラム）</span></div>
+      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">「六本木アートナイト・オープンコールプロジェクト」六本木ヒルズアリーナ、東京</span></div>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">「遊園的明滅展」高架画廊、東京</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">「流展」シェアプレイス調布多摩川、東京 ／「再展」DHU八王子キャンパス、東京</span></div>
+    </div>
+    <div class="cv-block"><h4>上映</h4>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">ゆうばり国際ファンタスティック映画祭 短編入選作品上映</span></div>
+    </div>
+    <div class="cv-block"><h4>受賞・助成</h4>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">さいたま文化芸術都市創造助成金2025（大宮曼荼羅 2025）</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">東京藝大「I LOVE YOU」プロジェクト 2025 採択</span></div>
+      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">文化庁メディア芸術クリエイター育成支援事業 選出</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">さいたま国際芸術祭 公募作品選出</span></div>
+      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">六本木アートナイト・オープンコールプロジェクト 入選</span></div>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">カルト国際映画祭 入選（監督・編集・脚本・撮影）</span></div>
+      <div class="cv-item"><span class="cv-year">2015</span><span class="cv-desc">銚子さんまマラソン 10km 優勝 / 箱根駅伝予選会 出場</span></div>
+    </div>
+    <div class="cv-block"><h4>経歴</h4>
+      <div class="cv-item"><span class="cv-year">1995</span><span class="cv-desc">大宮市出身</span></div>
+      <div class="cv-item"><span class="cv-year">2013</span><span class="cv-desc">川越東高校 卒業</span></div>
+      <div class="cv-item"><span class="cv-year">2017</span><span class="cv-desc">学習院大学 文学部史学科 卒業</span></div>
+      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">東京藝術大学大学院 映像研究科 メディア映像専攻 修了</span></div>
+    </div>
+  </div>
+  <div class="about-cv lang-en">
+    <div class="cv-block"><h4>Solo Exhibition</h4>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">"Omiya Mandala 2025,"Bonsai Shiki no Ie, Omiya</span></div>
+    </div>
+    <div class="cv-block"><h4>Group Exhibition</h4>
+      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">"DIG SHIBUYA 2026,"Hachiko Square, Shibuya</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">"GEIDAI GAMES 07,"Tokyo University of the Arts, Ueno Campus</span></div>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">"GEIDAI GAMES 06,"Tokyo University of the Arts, Ueno Campus</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">"Art Future Lab Exhibition 2025,"The University Art Museum, Tokyo University of the Arts, Ueno</span></div>
+      <div class="cv-item"><span class="cv-year">2024</span><span class="cv-desc">"Yokohama Mijinbi Exhibition,"Gallery OWL, Yokohama (Agency for Cultural Affairs Media Arts Creators Development Support Program)</span></div>
+      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">"Omiya Mandala,"Bonsai Shiki no Ie, Omiya (Saitama International Art Festival open-call program)</span></div>
+      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">"Roppongi Art Night Open Call Project,"Roppongi Hills Arena, Roppongi</span></div>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">"Yuenteki Meimetsu Exhibition,"Kouka Garou, Kanda</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">"Ruten,"Share Place Chofu Tamagawa / "Saiten," DHU Hachioji Campus</span></div>
+    </div>
+    <div class="cv-block"><h4>Screening</h4>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">Yubari International Fantastic Film Festival, selected short film screening</span></div>
+    </div>
+    <div class="cv-block"><h4>Grants &amp; Awards</h4>
+      <div class="cv-item"><span class="cv-year">2025</span><span class="cv-desc">Saitama Culture and Arts City Creation Grant 2025(Omiya Mandala 2025)</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">Selected for the Tokyo University of the Arts "I LOVE YOU" Project 2025</span></div>
+      <div class="cv-item"><span class="cv-year">2023</span><span class="cv-desc">Selected for the Agency for Cultural Affairs Media Arts Creators Development Support Program</span></div>
+      <div class="cv-item"><span class="cv-year"></span><span class="cv-desc">Selected for the Saitama International Art Festival open call</span></div>
+      <div class="cv-item"><span class="cv-year">2022</span><span class="cv-desc">Selected for the Roppongi Art Night Open Call Project</span></div>
+      <div class="cv-item"><span class="cv-year">2021</span><span class="cv-desc">Selected at the Cult International Film Festival(director, editor, writer, cinematographer)</span></div>
+      <div class="cv-item"><span class="cv-year">2015</span><span class="cv-desc">1st place, Choshi Sanma Marathon 10 km / Competed in the Hakone Ekiden qualifier</span></div>
+    </div>
+    <div class="cv-block"><h4>Biography</h4>
+      <div class="cv-item"><span class="cv-year">1995</span><span class="cv-desc">Born in Omiya, Saitama</span></div>
+      <div class="cv-item"><span class="cv-year">2013</span><span class="cv-desc">Graduated from Kawagoe Higashi High School</span></div>
+      <div class="cv-item"><span class="cv-year">2017</span><span class="cv-desc">BA in History, Faculty of Letters, Gakushuin University</span></div>
+      <div class="cv-item"><span class="cv-year">2026</span><span class="cv-desc">MFA in Media Video, Graduate School of Film and New Media, Tokyo University of the Arts</span></div>
+    </div>
+  </div>
+</main>
+<footer><p>© 2026 DAIGO SAKANE</p></footer>
+
+<script>
+(() => {
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    status.classList.remove('error');
+    const btn = form.querySelector('.form-submit');
+    btn.disabled = true;
+    const en = document.documentElement.lang === 'en';
+    status.textContent = en ? 'Sending…' : '送信中…';
+    form.elements._subject.value = '【ポートフォリオ】' + form.elements.subject.value;
+    // ページ遷移させずに送るため、FormSubmit の AJAX 用エンドポイント（/ajax/）に送る
+    const url = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+    try {
+      const res = await fetch(url, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || res.status);
+      form.reset();
+      status.textContent = en ? 'Thank you. Your message has been sent.' : '送信しました。ありがとうございます。';
+    } catch (err) {
+      status.classList.add('error');
+      status.textContent = (en ? 'Sending failed. Please try again later. (' : '送信に失敗しました。時間をおいて再度お試しください。（') + err.message + (en ? ')' : '）');
+    } finally {
+      btn.disabled = false;
+    }
+  });
+})();
+</script>
+<script>
+// 名前に数秒おきに色収差のグリッチを入れる（動きを減らす設定の閲覧者には出さない）
+(() => {
+  const logo = document.querySelector('nav .logo');
+  if (!logo || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  logo.addEventListener('animationend', () => logo.classList.remove('rgb-glitch'));
+  const fire = () => { logo.classList.remove('rgb-glitch'); void logo.offsetWidth; logo.classList.add('rgb-glitch'); setTimeout(fire, 3000 + Math.random() * 4000); };
+  setTimeout(fire, 1500);
+})();
+</script>
+<script>
+// 言語切り替え：選んだ言語を記憶し、<html lang> を切り替える
+(() => {
+  const btn = document.querySelector('.lang-toggle');
+  if (!btn) return;
+  const titleJa = document.title, titleEn = document.documentElement.dataset.titleEn || titleJa;
+  const apply = l => { document.documentElement.lang = l; document.title = l === 'en' ? titleEn : titleJa; };
+  apply(document.documentElement.lang === 'en' ? 'en' : 'ja');
+  btn.addEventListener('click', () => {
+    const l = document.documentElement.lang === 'en' ? 'ja' : 'en';
+    apply(l);
+    try { localStorage.setItem('lang', l); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
